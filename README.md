@@ -41,7 +41,14 @@ AiRagProxy is an OpenAI API-compatible ASP.NET Core Web API that implements Retr
    dotnet run --project src/AiRagProxy.Api/AiRagProxy.Api.csproj
    ```
 
-4. The API will be available at `https://localhost:5001/v1/chat/completions`
+4. The API will be available at `https://localhost:5001/v1/chat/completions`. Test the API with:
+```bash
+   curl -X POST "https://localhost:5001/v1/chat/completions" -H "Content-Type: application/json" -d '{
+     "model": "gpt-4",
+     "messages": [{"role": "user", "content": "What is RAG?"}]
+   }'
+```
+
 
 ## Project Structure
 
