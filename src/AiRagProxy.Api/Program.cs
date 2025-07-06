@@ -1,5 +1,8 @@
+using AiRagProxy.Api.Configurations;
+using Asp.Versioning;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
+using System.Threading.RateLimiting;
 using Scalar.AspNetCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -28,18 +31,40 @@ builder.Services.AddAuthorization();
 
 builder.Services.AddApiVersioning(options =>
 {
-    options.DefaultApiVersion = new Microsoft.AspNetCore.Mvc.ApiVersion(1, 0);
+    options.DefaultApiVersion = new ApiVersion(1);
     options.AssumeDefaultVersionWhenUnspecified = true;
     options.ReportApiVersions = true;
+    options.ApiVersionReader = new UrlSegmentApiVersionReader();
 });
-builder.Services.AddVersionedApiExplorer(options =>
-{
-    options.GroupNameFormat = "'v'VVV";
-    options.SubstituteApiVersionInUrl = true;
-});
+
+builder.Services.AddControllers();
 
 // Health Checks
 builder.Services.AddHealthChecks();
+
+// Bind Rate Limiting configuration from appsettings.json
+var rateLimitingOptions = builder.Configuration
+                              .GetSection("RateLimiting")
+                              .Get<RateLimitingOptions>() 
+                          ?? throw new InvalidOperationException("RateLimiting configuration is missing or invalid.");
+
+builder.Services.AddSingleton(rateLimitingOptions);
+
+builder.Services.AddRateLimiter(options =>
+{
+    options.GlobalLimiter = PartitionedRateLimiter.Create<HttpContext, string>(httpContext =>
+        RateLimitPartition.GetFixedWindowLimiter(
+            partitionKey: httpContext.Connection.RemoteIpAddress?.ToString() ?? "unknown",
+            factory: _ => new FixedWindowRateLimiterOptions
+            {
+                PermitLimit = rateLimitingOptions.PermitLimit,
+                Window = TimeSpan.FromMinutes(rateLimitingOptions.WindowMinutes),
+                QueueProcessingOrder = QueueProcessingOrder.OldestFirst,
+                QueueLimit = rateLimitingOptions.QueueLimit
+            }));
+
+    options.RejectionStatusCode = StatusCodes.Status429TooManyRequests;
+});
 
 var app = builder.Build();
 
@@ -55,9 +80,12 @@ app.UseHttpsRedirection();
 // Auth middlewares
 app.UseAuthentication();
 app.UseAuthorization();
+app.UseRateLimiter();
 
 // Beispiel-Endpunkt mit [Authorize]
-app.MapGet("/secure", [Authorize] () => "Geschützter Bereich");
+app.MapGet("/secure", [Authorize]() => "Geschützter Bereich");
+
+app.MapControllers();
 
 // Health Check Endpoint
 app.MapHealthChecks("/health");

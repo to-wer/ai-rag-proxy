@@ -1,15 +1,16 @@
+using Asp.Versioning;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
-namespace AiRagProxy.Api;
+namespace AiRagProxy.Api.Controllers;
 
-[ApiController]
+[ApiVersion(1)]
 [Route("api/v{version:apiVersion}/chat/completions")]
-[ApiVersion("1.0")]
-public class ChatCompletionsController : ControllerBase
+public class ChatCompletionsController : BaseController
 {
     [HttpPost]
     [Authorize]
+    [MapToApiVersion(1)]
     public IActionResult Post([FromBody] ChatCompletionRequest request)
     {
         // Hier würde die eigentliche Chat-Completion-Logik stehen
