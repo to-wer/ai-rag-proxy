@@ -1,3 +1,4 @@
+using System.Text.Json;
 using Microsoft.AspNetCore.Mvc;
 
 namespace AiRagProxy.Api.Middlewares;
@@ -35,7 +36,7 @@ public class ErrorHandlingMiddleware
             };
 
             context.Response.StatusCode = problemDetails.Status ?? 500;
-            await context.Response.WriteAsJsonAsync(problemDetails);
+            await context.Response.WriteAsync(JsonSerializer.Serialize(problemDetails));
         }
     }
 }
