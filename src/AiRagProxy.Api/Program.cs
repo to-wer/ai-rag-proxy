@@ -3,6 +3,7 @@ using Asp.Versioning;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using System.Threading.RateLimiting;
+using AiRagProxy.Api.Middlewares;
 using Scalar.AspNetCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -77,13 +78,15 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
+app.UseMiddleware<ErrorHandlingMiddleware>();
+
+app.UseRouting();
+
 // Auth middlewares
 app.UseAuthentication();
 app.UseAuthorization();
 app.UseRateLimiter();
 
-// Beispiel-Endpunkt mit [Authorize]
-app.MapGet("/secure", [Authorize]() => "Geschützter Bereich");
 
 app.MapControllers();
 
