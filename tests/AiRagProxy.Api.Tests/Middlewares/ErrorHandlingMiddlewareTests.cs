@@ -1,10 +1,7 @@
-using System;
 using System.Net;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
 using Moq;
-using Xunit;
 using AiRagProxy.Api.Middlewares;
 
 namespace AiRagProxy.Api.Tests.Middlewares

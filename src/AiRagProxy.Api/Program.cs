@@ -61,6 +61,7 @@ builder.Services.AddHealthChecks();
 // Data Protection for encryption
 builder.Services.AddDataProtection();
 builder.Services.AddScoped<IEncryptionService, EncryptionService>();
+builder.Services.AddScoped<IProviderConfigurationService, ProviderConfigurationService>();
 
 // Bind Rate Limiting configuration from appsettings.json
 var rateLimitingOptions = builder.Configuration
