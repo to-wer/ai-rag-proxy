@@ -1,0 +1,36 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AiRagProxy.Api", "src\AiRagProxy.Api\AiRagProxy.Api.csproj", "{00F5A154-5391-434E-925B-443CCA3DFD18}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{EAC69CCC-176B-42E2-914D-E79823E2590F}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{DB6210C1-F4F8-4EC1-8820-AFBE8C218AE0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AiRagProxy.Api.Tests", "tests\AiRagProxy.Api.Tests\AiRagProxy.Api.Tests.csproj", "{3505C606-5277-4111-9625-06631EC17A05}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{00F5A154-5391-434E-925B-443CCA3DFD18}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{00F5A154-5391-434E-925B-443CCA3DFD18}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{00F5A154-5391-434E-925B-443CCA3DFD18}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{00F5A154-5391-434E-925B-443CCA3DFD18}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3505C606-5277-4111-9625-06631EC17A05}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3505C606-5277-4111-9625-06631EC17A05}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3505C606-5277-4111-9625-06631EC17A05}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3505C606-5277-4111-9625-06631EC17A05}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{00F5A154-5391-434E-925B-443CCA3DFD18} = {EAC69CCC-176B-42E2-914D-E79823E2590F}
+		{3505C606-5277-4111-9625-06631EC17A05} = {DB6210C1-F4F8-4EC1-8820-AFBE8C218AE0}
+	EndGlobalSection
+EndGlobal
