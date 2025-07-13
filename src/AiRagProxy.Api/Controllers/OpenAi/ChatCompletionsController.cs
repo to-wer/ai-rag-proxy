@@ -2,10 +2,10 @@ using Asp.Versioning;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
-namespace AiRagProxy.Api.Controllers;
+namespace AiRagProxy.Api.Controllers.OpenAi;
 
 [ApiVersion(1)]
-[Route("api/v{version:apiVersion}/chat/completions")]
+[Route("compatibility/openai/v{version:apiVersion}/chat/completions")]
 public class ChatCompletionsController : BaseController
 {
     [HttpPost]
