@@ -1,15 +1,13 @@
 
-using Microsoft.AspNetCore.DataProtection;
-
 namespace AiRagProxy.Api.Services;
 
 public class EncryptionService : IEncryptionService
 {
-    private readonly IDataProtector _protector;
+    private readonly IStringDataProtector _protector;
 
-    public EncryptionService(IDataProtectionProvider provider)
+    public EncryptionService(IStringDataProtector protector)
     {
-        _protector = provider.CreateProtector(nameof(EncryptionService));
+        _protector = protector;
     }
 
     public string Encrypt(string plainText)

@@ -60,6 +60,7 @@ builder.Services.AddHealthChecks();
 
 // Data Protection for encryption
 builder.Services.AddDataProtection();
+builder.Services.AddScoped<IStringDataProtector, StringDataProtector>();
 builder.Services.AddScoped<IEncryptionService, EncryptionService>();
 builder.Services.AddScoped<IProviderConfigurationService, ProviderConfigurationService>();
 
