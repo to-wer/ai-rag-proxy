@@ -27,7 +27,7 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
     .AddJwtBearer(options =>
     {
         options.Authority = oidcConfig["Authority"];
-        options.Audience = oidcConfig["ClientId"];
+        options.Audience = oidcConfig["Audience"];
         options.TokenValidationParameters = new()
         {
             ValidateIssuer = true,
