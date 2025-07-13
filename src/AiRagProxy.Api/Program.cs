@@ -1,9 +1,11 @@
 using AiRagProxy.Api.Configurations;
 using Asp.Versioning;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.AspNetCore.Authorization;
 using System.Threading.RateLimiting;
 using AiRagProxy.Api.Middlewares;
+using Microsoft.EntityFrameworkCore;
+using AiRagProxy.Api.Data;
+using AiRagProxy.Api.Services;
 using Scalar.AspNetCore;
 using Serilog;
 
@@ -49,8 +51,16 @@ builder.Services.AddApiVersioning(options =>
 
 builder.Services.AddControllers();
 
+// Database Context
+builder.Services.AddDbContext<ApplicationDbContext>(options =>
+    options.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection")));
+
 // Health Checks
 builder.Services.AddHealthChecks();
+
+// Data Protection for encryption
+builder.Services.AddDataProtection();
+builder.Services.AddScoped<IEncryptionService, EncryptionService>();
 
 // Bind Rate Limiting configuration from appsettings.json
 var rateLimitingOptions = builder.Configuration
