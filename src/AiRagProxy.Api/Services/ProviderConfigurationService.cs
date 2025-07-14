@@ -92,4 +92,11 @@ public class ProviderConfigurationService : IProviderConfigurationService
             }).ToList()
         });
     }
+
+    public async Task<ProviderConfiguration?> GetProviderConfigurationByModelAsync(string modelName)
+    {
+        return await _context.ProviderConfigurations
+            .Include(pc => pc.Models)
+            .FirstOrDefaultAsync(pc => pc.Models.Any(m => m.ModelName == modelName));
+    }
 }

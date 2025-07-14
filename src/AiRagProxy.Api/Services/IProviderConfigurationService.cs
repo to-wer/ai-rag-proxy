@@ -9,4 +9,5 @@ public interface IProviderConfigurationService
     Task<ProviderConfiguration> CreateProviderConfigurationAsync(CreateProviderConfigurationDto dto);
     Task<ProviderConfigurationDto?> GetProviderConfigurationByIdAsync(int id);
     Task<IEnumerable<ProviderConfigurationDto>> GetAllProviderConfigurationsAsync();
+    Task<ProviderConfiguration?> GetProviderConfigurationByModelAsync(string modelName);
 }
