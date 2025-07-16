@@ -1,4 +1,4 @@
-namespace AiRagProxy.Api.Configurations
+namespace AiRagProxy.Api.Configuration
 {
     public class RateLimitingOptions
     {

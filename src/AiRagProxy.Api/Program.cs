@@ -1,5 +1,4 @@
-using AiRagProxy.Api.Configurations;
-using Asp.Versioning;
+using AiRagProxy.Api.Configuration;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using System.Threading.RateLimiting;
 using AiRagProxy.Api.Middlewares;
@@ -38,13 +37,7 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
 
 builder.Services.AddAuthorization();
 
-builder.Services.AddApiVersioning(options =>
-{
-    options.DefaultApiVersion = new ApiVersion(1);
-    options.AssumeDefaultVersionWhenUnspecified = true;
-    options.ReportApiVersions = true;
-    options.ApiVersionReader = new UrlSegmentApiVersionReader();
-});
+builder.Services.ConfigureApiVersioning();
 
 builder.Services.AddControllers();
 
