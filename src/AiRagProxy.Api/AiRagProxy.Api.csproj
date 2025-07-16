@@ -27,4 +27,8 @@
       </Content>
     </ItemGroup>
 
+    <ItemGroup>
+      <ProjectReference Include="..\..\AiRagProxy.Domain\AiRagProxy.Domain.csproj" />
+    </ItemGroup>
+
 </Project>

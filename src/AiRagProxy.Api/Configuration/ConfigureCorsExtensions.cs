@@ -14,13 +14,13 @@ public static class ConfigureCorsExtensions
     {
         services.AddCors(options =>
         {
-            options.AddPolicy("AllowAllOrigins",
-                builder =>
-                {
-                    builder.AllowAnyOrigin()
-                        .AllowAnyMethod()
-                        .AllowAnyHeader();
-                });
+            // TODO: check the CORS policy and adjust it as needed
+            options.AddPolicy("RestrictedCors", policy =>
+            {
+                policy.WithOrigins("https://to-wer.de")
+                    .AllowAnyHeader()
+                    .AllowAnyMethod();
+            });
         });
 
         return services;

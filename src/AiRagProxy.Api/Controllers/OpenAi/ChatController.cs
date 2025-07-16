@@ -2,16 +2,14 @@ using Asp.Versioning;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
-namespace AiRagProxy.Api.Controllers;
+namespace AiRagProxy.Api.Controllers.OpenAi;
 
 [ApiVersion(1)]
-[Route("api/v{version:apiVersion}/chat/completions")]
-public class ChatCompletionsController : BaseController
+public class ChatController : OpenAiBaseController
 {
-    [HttpPost]
-    [Authorize]
+    [HttpPost("completions")]
     [MapToApiVersion(1)]
-    public IActionResult Post([FromBody] ChatCompletionRequest request)
+    public IActionResult Completions([FromBody] ChatCompletionRequest request)
     {
         // Hier würde die eigentliche Chat-Completion-Logik stehen
         // Beispielantwort
