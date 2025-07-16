@@ -1,7 +1,6 @@
 using AiRagProxy.Api.Configurations;
 using Asp.Versioning;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.AspNetCore.Authorization;
 using System.Threading.RateLimiting;
 using AiRagProxy.Api.Middlewares;
 using Scalar.AspNetCore;
