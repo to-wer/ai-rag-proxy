@@ -8,4 +8,5 @@ public class OllamaChatCompletionRequest
 
     [JsonPropertyName("messages")] public required List<OllamaChatMessage> Messages { get; set; }
     [JsonPropertyName("stream")] public bool Stream { get; set; } = false;
+    [JsonPropertyName("tools")] public List<OllamaTool>? Tools { get; set; }
 }
