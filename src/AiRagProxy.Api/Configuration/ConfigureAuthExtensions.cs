@@ -1,3 +1,4 @@
+using AiRagProxy.Api.Services.Interfaces;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 
@@ -29,6 +30,20 @@ public static class ConfigureAuthExtensions
                     ValidateAudience = true,
                     ValidateLifetime = true,
                     ValidateIssuerSigningKey = true
+                };
+                // if(!hostEnviornment.IsDevelopment())
+                // {
+                //     options.RequireHttpsMetadata = false;
+                // }
+
+                options.Events = new JwtBearerEvents
+                {
+                    OnTokenValidated = async context =>
+                    {
+                        var claims = context.Principal;
+                        var userService = context.HttpContext.RequestServices.GetRequiredService<IUserService>();
+                        if (claims != null) await userService.SyncUser(claims);
+                    }
                 };
             });
 

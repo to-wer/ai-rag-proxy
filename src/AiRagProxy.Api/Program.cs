@@ -2,6 +2,8 @@ using AiRagProxy.Api.Configuration;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using System.Threading.RateLimiting;
 using AiRagProxy.Api.Middlewares;
+using AiRagProxy.Storage.Configuration;
+using AiRagProxy.Storage.Services.Interfaces;
 using Scalar.AspNetCore;
 using Serilog;
 
@@ -21,6 +23,8 @@ builder.Services.AddOpenApi();
 builder.Services.ConfigureAuthentication(builder.Configuration);
 builder.Services.ConfigureApiVersioning();
 builder.Services.ConfigureCors();
+
+builder.Services.AddStorageServices(builder.Configuration);
 
 builder.Services.ConfigureServices();
 
@@ -47,6 +51,12 @@ app.UseHttpsRedirection();
 app.UseMiddleware<ErrorHandlingMiddleware>();
 
 app.UseRouting();
+
+using (var scope = app.Services.CreateScope())
+{
+    var storageService = scope.ServiceProvider.GetRequiredService<IAiRagProxyStorageService>();
+    await storageService.MigrateDatabase();
+}
 
 // Auth middlewares
 app.UseAuthentication();

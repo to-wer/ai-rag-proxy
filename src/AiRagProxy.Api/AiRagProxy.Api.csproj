@@ -5,30 +5,35 @@
         <Nullable>enable</Nullable>
         <ImplicitUsings>enable</ImplicitUsings>
         <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
-      <UserSecretsId>1acb286a-bc00-4951-bc43-6d378b947ff1</UserSecretsId>
-  </PropertyGroup>
+        <UserSecretsId>1acb286a-bc00-4951-bc43-6d378b947ff1</UserSecretsId>
+    </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="Asp.Versioning.Mvc" Version="8.1.0" />
-        <PackageReference Include="Asp.Versioning.Mvc.ApiExplorer" Version="8.1.0" />
-        <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="9.0.6" />
-        <PackageReference Include="Microsoft.AspNetCore.Authentication.OpenIdConnect" Version="9.0.6" />
-        <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="9.0.5" />
-        <PackageReference Include="Scalar.AspNetCore" Version="2.5.3" />
-        <PackageReference Include="Serilog.AspNetCore" Version="9.0.0" />
-        <PackageReference Include="Serilog.Settings.Configuration" Version="9.0.0" />
-        <PackageReference Include="Serilog.Sinks.Console" Version="6.0.0" />
-        <PackageReference Include="Serilog.Sinks.File" Version="7.0.0" />
+        <PackageReference Include="Asp.Versioning.Mvc" Version="8.1.0"/>
+        <PackageReference Include="Asp.Versioning.Mvc.ApiExplorer" Version="8.1.0"/>
+        <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="9.0.6"/>
+        <PackageReference Include="Microsoft.AspNetCore.Authentication.OpenIdConnect" Version="9.0.6"/>
+        <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="9.0.5"/>
+        <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="9.0.7">
+          <PrivateAssets>all</PrivateAssets>
+          <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+        </PackageReference>
+        <PackageReference Include="Scalar.AspNetCore" Version="2.5.3"/>
+        <PackageReference Include="Serilog.AspNetCore" Version="9.0.0"/>
+        <PackageReference Include="Serilog.Settings.Configuration" Version="9.0.0"/>
+        <PackageReference Include="Serilog.Sinks.Console" Version="6.0.0"/>
+        <PackageReference Include="Serilog.Sinks.File" Version="7.0.0"/>
     </ItemGroup>
 
     <ItemGroup>
-      <Content Include="..\.dockerignore">
-        <Link>.dockerignore</Link>
-      </Content>
+        <Content Include="..\.dockerignore">
+            <Link>.dockerignore</Link>
+        </Content>
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\..\AiRagProxy.Domain\AiRagProxy.Domain.csproj" />
+        <ProjectReference Include="..\AiRagProxy.Domain\AiRagProxy.Domain.csproj"/>
+        <ProjectReference Include="..\AiRagProxy.Storage\AiRagProxy.Storage.csproj" />
     </ItemGroup>
 
 </Project>
