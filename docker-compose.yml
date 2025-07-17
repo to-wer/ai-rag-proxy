@@ -6,9 +6,9 @@ services:
     image: postgres:17.5
     container_name: airagproxy-db
     environment:
-      POSTGRES_USER: ${AI_RAG_PROXY_DB_USER:-aiproxy}
-      POSTGRES_PASSWORD: ${AI_RAG_PROXY_DB_PASSWORD:-aiproxy}
-      POSTGRES_DB: ${AI_RAG_PROXY_DB_NAME:-aiproxy}
+      POSTGRES_USER: ${AI_RAG_PROXY_DB_USER:-airagproxy}
+      POSTGRES_PASSWORD: ${AI_RAG_PROXY_DB_PASSWORD:-airagproxy}
+      POSTGRES_DB: ${AI_RAG_PROXY_DB_NAME:-airagproxy}
     ports:
       - "${AI_RAG_PROXY_DB_PORT}:5432"
     volumes:
