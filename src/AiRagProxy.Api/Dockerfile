@@ -8,6 +8,8 @@ FROM mcr.microsoft.com/dotnet/sdk:9.0 AS build
 ARG BUILD_CONFIGURATION=Release
 WORKDIR /src
 COPY ["AiRagProxy.Api/AiRagProxy.Api.csproj", "AiRagProxy.Api/"]
+COPY ["AiRagProxy.Domain/AiRagProxy.Domain.csproj", "AiRagProxy.Domain/"]
+COPY ["AiRagProxy.Storage/AiRagProxy.Storage.csproj", "AiRagProxy.Storage/"]
 RUN dotnet restore "AiRagProxy.Api/AiRagProxy.Api.csproj"
 COPY . .
 WORKDIR "/src/AiRagProxy.Api"

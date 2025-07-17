@@ -1,0 +1,30 @@
+volumes:
+    db_data:
+
+services:
+  db: 
+    image: postgres:17.5
+    container_name: airagproxy-db
+    environment:
+      POSTGRES_USER: ${AI_PROXY_DB_USER:-aiproxy}
+      POSTGRES_PASSWORD: ${AI_PROXY_DB_PASSWORD:-aiproxy}
+      POSTGRES_DB: ${AI_PROXY_DB_NAME:-aiproxy}
+    ports:
+      - "${AI_PROXY_DB_PORT}:5432"
+    volumes:
+      - db_data:/var/lib/postgresql/data
+    restart: unless-stopped
+      
+  api:
+    build:
+      context: ./src
+      dockerfile: AiRagProxy.Api/Dockerfile
+    container_name: airagproxy_api
+    ports:
+      - "${AI_PROXY_API_PORT}:8080"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ConnectionStrings__DefaultConnection=Server=db;Database=${AI_RAG_PROXY_DB_NAME:-airagproxy};Username=${AI_RAG_PROXY_DB_USER:-${AI_RAG_PROXY_DB_PASSWORD:-airagproxy}};Password=${AI_RAG_PROXY_DB_PASSWORD:-airagproxy}
+      - OIDC__AUTHORITY=${AI_PROXY_OIDC_AUTHORITY}
+      - OIDC__AUDIENCE=${AI_PROXY_OIDC_AUDIENCE}
+    restart: unless-stopped
