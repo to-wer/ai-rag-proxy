@@ -27,4 +27,6 @@ services:
       - ConnectionStrings__DefaultConnection=Server=db;Database=${AI_RAG_PROXY_DB_NAME:-airagproxy};Username=${AI_RAG_PROXY_DB_USER:-${AI_RAG_PROXY_DB_PASSWORD:-airagproxy}};Password=${AI_RAG_PROXY_DB_PASSWORD:-airagproxy}
       - OIDC__AUTHORITY=${AI_RAG_PROXY_OIDC_AUTHORITY}
       - OIDC__AUDIENCE=${AI_RAG_PROXY_OIDC_AUDIENCE}
+    depends_on:
+      - db
     restart: unless-stopped
