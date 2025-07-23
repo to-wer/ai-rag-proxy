@@ -1,4 +1,6 @@
+using AiRagProxy.Api.Middlewares;
 using AiRagProxy.Api.Services.Interfaces;
+using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 
@@ -16,7 +18,8 @@ public static class ConfigureAuthExtensions
     /// <param name="configuration">The <see cref="IConfiguration"/> containing the application's configuration settings.</param>
     /// <returns>The updated <see cref="IServiceCollection"/>.</returns>
     public static IServiceCollection ConfigureAuthentication(this IServiceCollection services,
-        IConfiguration configuration)
+        IConfiguration configuration,
+        IHostEnvironment hostEnvironment)
     {
         var oidcConfig = configuration.GetSection("Oidc");
         services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
@@ -31,10 +34,10 @@ public static class ConfigureAuthExtensions
                     ValidateLifetime = true,
                     ValidateIssuerSigningKey = true
                 };
-                // if(!hostEnviornment.IsDevelopment())
-                // {
-                //     options.RequireHttpsMetadata = false;
-                // }
+                if (!hostEnvironment.IsDevelopment())
+                {
+                    options.RequireHttpsMetadata = false;
+                }
 
                 options.Events = new JwtBearerEvents
                 {
@@ -45,7 +48,8 @@ public static class ConfigureAuthExtensions
                         if (claims != null) await userService.SyncUser(claims);
                     }
                 };
-            });
+            })
+            .AddScheme<AuthenticationSchemeOptions, PatAuthenticationHandler>("PAT", options => { });
 
         services.AddAuthorization();
 

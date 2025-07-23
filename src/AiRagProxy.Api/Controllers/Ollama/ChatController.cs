@@ -8,8 +8,6 @@ public class ChatController : OllamaBaseController
     [HttpPost]
     public IActionResult Post([FromBody] OllamaChatCompletionRequest request)
     {
-        // This is a placeholder for the actual implementation.
-        // You would typically call a service to handle the chat request.
-        return Ok(new { message = "Chat request received", data = request });
+        throw new NotImplementedException();
     }
 }

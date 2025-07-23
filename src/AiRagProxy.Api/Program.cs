@@ -20,13 +20,13 @@ builder.Host.UseSerilog();
 // Add services to the container.
 builder.Services.AddOpenApi();
 
-builder.Services.ConfigureAuthentication(builder.Configuration);
+builder.Services.ConfigureAuthentication(builder.Configuration, builder.Environment);
 builder.Services.ConfigureApiVersioning();
 builder.Services.ConfigureCors();
 
 builder.Services.AddStorageServices(builder.Configuration);
 
-builder.Services.ConfigureServices();
+builder.Services.ConfigureServices(builder.Configuration);
 
 builder.Services.AddControllers();
 
