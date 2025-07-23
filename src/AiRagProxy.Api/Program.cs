@@ -25,7 +25,6 @@ builder.Services.ConfigureApiVersioning();
 builder.Services.ConfigureCors();
 
 builder.Services.AddStorageServices(builder.Configuration);
-
 builder.Services.ConfigureServices(builder.Configuration);
 
 builder.Services.AddControllers();

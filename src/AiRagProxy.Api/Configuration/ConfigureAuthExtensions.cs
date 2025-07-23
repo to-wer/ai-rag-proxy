@@ -16,6 +16,7 @@ public static class ConfigureAuthExtensions
     /// </summary>
     /// <param name="services">The <see cref="IServiceCollection"/> to add the authentication and authorization services to.</param>
     /// <param name="configuration">The <see cref="IConfiguration"/> containing the application's configuration settings.</param>
+    /// <param name="hostEnvironment"></param>
     /// <returns>The updated <see cref="IServiceCollection"/>.</returns>
     public static IServiceCollection ConfigureAuthentication(this IServiceCollection services,
         IConfiguration configuration,
@@ -23,12 +24,13 @@ public static class ConfigureAuthExtensions
     {
         var oidcConfig = configuration.GetSection("Oidc");
         services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
-            .AddJwtBearer(options =>
+            .AddJwtBearer(JwtBearerDefaults.AuthenticationScheme, options =>
             {
                 options.Authority = oidcConfig["Authority"];
                 options.Audience = oidcConfig["Audience"];
                 options.TokenValidationParameters = new TokenValidationParameters
                 {
+                    ValidIssuer = oidcConfig["Authority"],
                     ValidateIssuer = true,
                     ValidateAudience = true,
                     ValidateLifetime = true,

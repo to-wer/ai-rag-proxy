@@ -27,19 +27,19 @@ public class PatAuthenticationHandler(
             return AuthenticateResult.NoResult();
         }
         
-        ValidatedToken? validatedToken = tokenValidationService.ValidateToken(token);
+        var validatedToken = await tokenValidationService.ValidateToken(token);
         
         if (validatedToken == null)
         {
             return AuthenticateResult.Fail("Invalid or expired PAT");
         }
 
-        var claims = new List<Claim>();
-        // {
-        //     new(ClaimTypes.NameIdentifier, validatedToken.ExternalId),
-        //     new(ClaimTypes.Name, validatedToken.DisplayName ?? validatedToken.Email),
-        //     new("pat_id", validatedToken.TokenId.ToString())
-        // };
+        var claims = new List<Claim>()
+        {
+            new(ClaimTypes.NameIdentifier, validatedToken.ExternalId),
+            new(ClaimTypes.Name, validatedToken.DisplayName ?? validatedToken.Email),
+            new("pat_id", validatedToken.TokenId.ToString())
+        };
 
         var identity = new ClaimsIdentity(claims, Scheme.Name);
         var principal = new ClaimsPrincipal(identity);

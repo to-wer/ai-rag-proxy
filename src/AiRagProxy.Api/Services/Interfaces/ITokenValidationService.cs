@@ -4,5 +4,5 @@ namespace AiRagProxy.Api.Services.Interfaces;
 
 public interface ITokenValidationService
 {
-    ValidatedToken? ValidateToken(string token);
+    Task<ValidatedToken?> ValidateToken(string token);
 }

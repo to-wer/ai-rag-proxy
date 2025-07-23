@@ -18,6 +18,9 @@ public static class ConfigureServicesExtensions
                 client.DefaultRequestHeaders.Add("Authorization", $"Bearer {apiKey}");
             }
         });
+        services.AddScoped<ITokenValidationService, TokenValidationService>();
+        services.AddScoped<ITokenGeneratorService, TokenGeneratorService>();
+        services.AddScoped<IPatService, PatService>();
 
         return services;
     }
