@@ -14,7 +14,17 @@ services:
     volumes:
       - db_data:/var/lib/postgresql/data
     restart: unless-stopped
-      
+    healthcheck:
+      test:
+        [
+          "CMD-SHELL",
+          "pg_isready -U ${AI_RAG_PROXY_DB_USER:-airagproxy} -d ${AI_RAG_PROXY_DB_NAME:-airagproxy}",
+        ]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+  
+  
   api:
     build:
       context: ./src
@@ -27,6 +37,11 @@ services:
       - ConnectionStrings__DefaultConnection=Server=db;Database=${AI_RAG_PROXY_DB_NAME:-airagproxy};Username=${AI_RAG_PROXY_DB_USER:-${AI_RAG_PROXY_DB_PASSWORD:-airagproxy}};Password=${AI_RAG_PROXY_DB_PASSWORD:-airagproxy}
       - OIDC__AUTHORITY=${AI_RAG_PROXY_OIDC_AUTHORITY}
       - OIDC__AUDIENCE=${AI_RAG_PROXY_OIDC_AUDIENCE}
+      - OpenAi__BaseUrl=http://host.docker.internal:11434
+      - OpenAi__ApiKey=ollama
     depends_on:
-      - db
+      db:
+        condition: service_healthy
     restart: unless-stopped
+    healthcheck:
+      test: [ "CMD", "curl", "-f", "http://localhost:8080/health" ]

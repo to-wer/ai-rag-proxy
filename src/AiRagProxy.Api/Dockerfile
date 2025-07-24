@@ -1,4 +1,5 @@
 ﻿FROM mcr.microsoft.com/dotnet/aspnet:9.0 AS base
+RUN apt-get update && apt-get install curl -y && apt-get clean
 USER $APP_UID
 WORKDIR /app
 EXPOSE 8080

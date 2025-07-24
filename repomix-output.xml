@@ -1,0 +1,3425 @@
+This file is a merged representation of the entire codebase, combined into a single document by Repomix.
+
+<file_summary>
+This section contains a summary of this file.
+
+<purpose>
+This file contains a packed representation of the entire repository's contents.
+It is designed to be easily consumable by AI systems for analysis, code review,
+or other automated processes.
+</purpose>
+
+<file_format>
+The content is organized as follows:
+1. This summary section
+2. Repository information
+3. Directory structure
+4. Repository files, each consisting of:
+  - File path as an attribute
+  - Full contents of the file
+</file_format>
+
+<usage_guidelines>
+- This file should be treated as read-only. Any changes should be made to the
+  original repository files, not this packed version.
+- When processing this file, use the file path to distinguish
+  between different files in the repository.
+- Be aware that this file may contain sensitive information. Handle it with
+  the same level of security as you would the original repository.
+</usage_guidelines>
+
+<notes>
+- Some files may have been excluded based on .gitignore rules and Repomix's configuration
+- Binary files are not included in this packed representation. Please refer to the Repository Structure section for a complete list of file paths, including binary files
+- Files matching patterns in .gitignore are excluded
+- Files matching default ignore patterns are excluded
+</notes>
+
+<additional_info>
+
+</additional_info>
+
+</file_summary>
+
+<directory_structure>
+.gitignore
+.repomixignore
+AiRagProxy.sln
+docker-compose.yml
+docs/architecture.md
+LICENSE
+README.md
+repomix.config.json
+sample.env
+src/.dockerignore
+src/.idea/.idea.AiRagProxy/.idea/.gitignore
+src/.idea/.idea.AiRagProxy/.idea/.name
+src/.idea/.idea.AiRagProxy/.idea/indexLayout.xml
+src/.idea/.idea.AiRagProxy/.idea/vcs.xml
+src/AiRagProxy.Api/AiRagProxy.Api.csproj
+src/AiRagProxy.Api/AiRagProxy.Api.http
+src/AiRagProxy.Api/appsettings.Development.json
+src/AiRagProxy.Api/appsettings.json
+src/AiRagProxy.Api/Configuration/ConfigureApiVersioningExtensions.cs
+src/AiRagProxy.Api/Configuration/ConfigureAuthExtensions.cs
+src/AiRagProxy.Api/Configuration/ConfigureCorsExtensions.cs
+src/AiRagProxy.Api/Configuration/ConfigureRateLimitingExtensions.cs
+src/AiRagProxy.Api/Configuration/ConfigureServicesExtensions.cs
+src/AiRagProxy.Api/Configuration/RateLimitingOptions.cs
+src/AiRagProxy.Api/Controllers/Admin/UsersController.cs
+src/AiRagProxy.Api/Controllers/BaseController.cs
+src/AiRagProxy.Api/Controllers/Ollama/ChatController.cs
+src/AiRagProxy.Api/Controllers/Ollama/OllamaBaseController.cs
+src/AiRagProxy.Api/Controllers/OpenAi/ChatController.cs
+src/AiRagProxy.Api/Controllers/OpenAi/ModelsController.cs
+src/AiRagProxy.Api/Controllers/OpenAi/OpenAiBaseController.cs
+src/AiRagProxy.Api/Controllers/PersonalAccessTokensController.cs
+src/AiRagProxy.Api/Dockerfile
+src/AiRagProxy.Api/Middlewares/ErrorHandlingMiddleware.cs
+src/AiRagProxy.Api/Middlewares/PatAuthenticationHandler.cs
+src/AiRagProxy.Api/Program.cs
+src/AiRagProxy.Api/Properties/launchSettings.json
+src/AiRagProxy.Api/Services/Interfaces/IOpenAiCommunicationService.cs
+src/AiRagProxy.Api/Services/Interfaces/IPatService.cs
+src/AiRagProxy.Api/Services/Interfaces/ITokenGeneratorService.cs
+src/AiRagProxy.Api/Services/Interfaces/ITokenValidationService.cs
+src/AiRagProxy.Api/Services/Interfaces/IUserService.cs
+src/AiRagProxy.Api/Services/OpenAiCommunicationService.cs
+src/AiRagProxy.Api/Services/PatService.cs
+src/AiRagProxy.Api/Services/TokenGeneratorService.cs
+src/AiRagProxy.Api/Services/TokenValidationService.cs
+src/AiRagProxy.Api/Services/UserService.cs
+src/AiRagProxy.Domain/AiRagProxy.Domain.csproj
+src/AiRagProxy.Domain/Dtos/Ollama/OllamaChatCompletionRequest.cs
+src/AiRagProxy.Domain/Dtos/Ollama/OllamaChatCompletionResponse.cs
+src/AiRagProxy.Domain/Dtos/Ollama/OllamaChatMessage.cs
+src/AiRagProxy.Domain/Dtos/Ollama/OllamaFunction.cs
+src/AiRagProxy.Domain/Dtos/Ollama/OllamaFunctionParameters.cs
+src/AiRagProxy.Domain/Dtos/Ollama/OllamaPropertyDefinition.cs
+src/AiRagProxy.Domain/Dtos/Ollama/OllamaTool.cs
+src/AiRagProxy.Domain/Dtos/OpenAi/ChatCompletionChunk.cs
+src/AiRagProxy.Domain/Dtos/OpenAi/Model.cs
+src/AiRagProxy.Domain/Dtos/OpenAi/ModelsResponse.cs
+src/AiRagProxy.Domain/Dtos/OpenAi/OpenAiChatCompletionRequest.cs
+src/AiRagProxy.Domain/Dtos/OpenAi/OpenAiChatCompletionResponse.cs
+src/AiRagProxy.Domain/Dtos/OpenAi/OpenAiChatMessage.cs
+src/AiRagProxy.Domain/Dtos/PersonalAccessToken/CreateTokenRequest.cs
+src/AiRagProxy.Domain/Dtos/PersonalAccessToken/CreateTokenResponse.cs
+src/AiRagProxy.Domain/Dtos/PersonalAccessToken/TokenResponse.cs
+src/AiRagProxy.Domain/Dtos/PersonalAccessToken/ValidatedToken.cs
+src/AiRagProxy.Storage/AiRagProxy.Storage.csproj
+src/AiRagProxy.Storage/Configuration/ConfigureServices.cs
+src/AiRagProxy.Storage/Context/AiRagProxyContext.cs
+src/AiRagProxy.Storage/Context/IAiRagProxyContext.cs
+src/AiRagProxy.Storage/Entities/AppUser.cs
+src/AiRagProxy.Storage/Entities/PersonalAccessToken.cs
+src/AiRagProxy.Storage/Migrations/20250717193652_AddAuth.cs
+src/AiRagProxy.Storage/Migrations/20250717193652_AddAuth.Designer.cs
+src/AiRagProxy.Storage/Migrations/20250723104542_AddPAT.cs
+src/AiRagProxy.Storage/Migrations/20250723104542_AddPAT.Designer.cs
+src/AiRagProxy.Storage/Migrations/AiRagProxyContextModelSnapshot.cs
+src/AiRagProxy.Storage/Services/AiRagProxyStorageService.cs
+src/AiRagProxy.Storage/Services/Interfaces/IAiRagProxyStorageService.cs
+tests/AiRagProxy.Api.Tests/AiRagProxy.Api.Tests.csproj
+tests/AiRagProxy.Api.Tests/Middlewares/ErrorHandlingMiddlewareTests.cs
+</directory_structure>
+
+<files>
+This section contains the contents of the repository's files.
+
+<file path=".gitignore">
+## Ignore Visual Studio temporary files, build results, and
+## files generated by popular Visual Studio add-ons.
+##
+## Get latest from https://github.com/github/gitignore/blob/main/VisualStudio.gitignore
+
+# User-specific files
+*.rsuser
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+*.env
+!sample.env
+
+# User-specific files (MonoDevelop/Xamarin Studio)
+*.userprefs
+
+# Mono auto generated files
+mono_crash.*
+
+# Build results
+[Dd]ebug/
+[Dd]ebugPublic/
+[Rr]elease/
+[Rr]eleases/
+x64/
+x86/
+[Ww][Ii][Nn]32/
+[Aa][Rr][Mm]/
+[Aa][Rr][Mm]64/
+[Aa][Rr][Mm]64[Ee][Cc]/
+bld/
+[Oo]bj/
+[Oo]ut/
+[Ll]og/
+[Ll]ogs/
+
+# Build results on 'Bin' directories
+**/[Bb]in/*
+# Uncomment if you have tasks that rely on *.refresh files to move binaries
+# (https://github.com/github/gitignore/pull/3736)
+#!**/[Bb]in/*.refresh
+
+# Visual Studio 2015/2017 cache/options directory
+.vs/
+# Uncomment if you have tasks that create the project's static files in wwwroot
+#wwwroot/
+
+# Visual Studio 2017 auto generated files
+Generated\ Files/
+
+# MSTest test Results
+[Tt]est[Rr]esult*/
+[Bb]uild[Ll]og.*
+*.trx
+
+# NUnit
+*.VisualState.xml
+TestResult.xml
+nunit-*.xml
+
+# Approval Tests result files
+*.received.*
+
+# Build Results of an ATL Project
+[Dd]ebugPS/
+[Rr]eleasePS/
+dlldata.c
+
+# Benchmark Results
+BenchmarkDotNet.Artifacts/
+
+# .NET Core
+project.lock.json
+project.fragment.lock.json
+artifacts/
+
+# ASP.NET Scaffolding
+ScaffoldingReadMe.txt
+
+# StyleCop
+StyleCopReport.xml
+
+# Files built by Visual Studio
+*_i.c
+*_p.c
+*_h.h
+*.ilk
+*.meta
+*.obj
+*.idb
+*.iobj
+*.pch
+*.pdb
+*.ipdb
+*.pgc
+*.pgd
+*.rsp
+# but not Directory.Build.rsp, as it configures directory-level build defaults
+!Directory.Build.rsp
+*.sbr
+*.tlb
+*.tli
+*.tlh
+*.tmp
+*.tmp_proj
+*_wpftmp.csproj
+*.log
+*.tlog
+*.vspscc
+*.vssscc
+.builds
+*.pidb
+*.svclog
+*.scc
+
+# Chutzpah Test files
+_Chutzpah*
+
+# Visual C++ cache files
+ipch/
+*.aps
+*.ncb
+*.opendb
+*.opensdf
+*.sdf
+*.cachefile
+*.VC.db
+*.VC.VC.opendb
+
+# Visual Studio profiler
+*.psess
+*.vsp
+*.vspx
+*.sap
+
+# Visual Studio Trace Files
+*.e2e
+
+# TFS 2012 Local Workspace
+$tf/
+
+# Guidance Automation Toolkit
+*.gpState
+
+# ReSharper is a .NET coding add-in
+_ReSharper*/
+*.[Rr]e[Ss]harper
+*.DotSettings.user
+
+# TeamCity is a build add-in
+_TeamCity*
+
+# DotCover is a Code Coverage Tool
+*.dotCover
+
+# AxoCover is a Code Coverage Tool
+.axoCover/*
+!.axoCover/settings.json
+
+# Coverlet is a free, cross platform Code Coverage Tool
+coverage*.json
+coverage*.xml
+coverage*.info
+
+# Visual Studio code coverage results
+*.coverage
+*.coveragexml
+
+# NCrunch
+_NCrunch_*
+.NCrunch_*
+.*crunch*.local.xml
+nCrunchTemp_*
+
+# MightyMoose
+*.mm.*
+AutoTest.Net/
+
+# Web workbench (sass)
+.sass-cache/
+
+# Installshield output folder
+[Ee]xpress/
+
+# DocProject is a documentation generator add-in
+DocProject/buildhelp/
+DocProject/Help/*.HxT
+DocProject/Help/*.HxC
+DocProject/Help/*.hhc
+DocProject/Help/*.hhk
+DocProject/Help/*.hhp
+DocProject/Help/Html2
+DocProject/Help/html
+
+# Click-Once directory
+publish/
+
+# Publish Web Output
+*.[Pp]ublish.xml
+*.azurePubxml
+# Note: Comment the next line if you want to checkin your web deploy settings,
+# but database connection strings (with potential passwords) will be unencrypted
+*.pubxml
+*.publishproj
+
+# Microsoft Azure Web App publish settings. Comment the next line if you want to
+# checkin your Azure Web App publish settings, but sensitive information contained
+# in these scripts will be unencrypted
+PublishScripts/
+
+# NuGet Packages
+*.nupkg
+# NuGet Symbol Packages
+*.snupkg
+# The packages folder can be ignored because of Package Restore
+**/[Pp]ackages/*
+# except build/, which is used as an MSBuild target.
+!**/[Pp]ackages/build/
+# Uncomment if necessary however generally it will be regenerated when needed
+#!**/[Pp]ackages/repositories.config
+# NuGet v3's project.json files produces more ignorable files
+*.nuget.props
+*.nuget.targets
+
+# Microsoft Azure Build Output
+csx/
+*.build.csdef
+
+# Microsoft Azure Emulator
+ecf/
+rcf/
+
+# Windows Store app package directories and files
+AppPackages/
+BundleArtifacts/
+Package.StoreAssociation.xml
+_pkginfo.txt
+*.appx
+*.appxbundle
+*.appxupload
+
+# Visual Studio cache files
+# files ending in .cache can be ignored
+*.[Cc]ache
+# but keep track of directories ending in .cache
+!?*.[Cc]ache/
+
+# Others
+ClientBin/
+~$*
+*~
+*.dbmdl
+*.dbproj.schemaview
+*.jfm
+*.pfx
+*.publishsettings
+orleans.codegen.cs
+
+# Including strong name files can present a security risk
+# (https://github.com/github/gitignore/pull/2483#issue-259490424)
+#*.snk
+
+# Since there are multiple workflows, uncomment next line to ignore bower_components
+# (https://github.com/github/gitignore/pull/1529#issuecomment-104372622)
+#bower_components/
+
+# RIA/Silverlight projects
+Generated_Code/
+
+# Backup & report files from converting an old project file
+# to a newer Visual Studio version. Backup files are not needed,
+# because we have git ;-)
+_UpgradeReport_Files/
+Backup*/
+UpgradeLog*.XML
+UpgradeLog*.htm
+ServiceFabricBackup/
+*.rptproj.bak
+
+# SQL Server files
+*.mdf
+*.ldf
+*.ndf
+
+# Business Intelligence projects
+*.rdl.data
+*.bim.layout
+*.bim_*.settings
+*.rptproj.rsuser
+*- [Bb]ackup.rdl
+*- [Bb]ackup ([0-9]).rdl
+*- [Bb]ackup ([0-9][0-9]).rdl
+
+# Microsoft Fakes
+FakesAssemblies/
+
+# GhostDoc plugin setting file
+*.GhostDoc.xml
+
+# Node.js Tools for Visual Studio
+.ntvs_analysis.dat
+node_modules/
+
+# Visual Studio 6 build log
+*.plg
+
+# Visual Studio 6 workspace options file
+*.opt
+
+# Visual Studio 6 auto-generated workspace file (contains which files were open etc.)
+*.vbw
+
+# Visual Studio 6 auto-generated project file (contains which files were open etc.)
+*.vbp
+
+# Visual Studio 6 workspace and project file (working project files containing files to include in project)
+*.dsw
+*.dsp
+
+# Visual Studio 6 technical files
+*.ncb
+*.aps
+
+# Visual Studio LightSwitch build output
+**/*.HTMLClient/GeneratedArtifacts
+**/*.DesktopClient/GeneratedArtifacts
+**/*.DesktopClient/ModelManifest.xml
+**/*.Server/GeneratedArtifacts
+**/*.Server/ModelManifest.xml
+_Pvt_Extensions
+
+# Paket dependency manager
+**/.paket/paket.exe
+paket-files/
+
+# FAKE - F# Make
+**/.fake/
+
+# CodeRush personal settings
+**/.cr/personal
+
+# Python Tools for Visual Studio (PTVS)
+**/__pycache__/
+*.pyc
+
+# Cake - Uncomment if you are using it
+#tools/**
+#!tools/packages.config
+
+# Tabs Studio
+*.tss
+
+# Telerik's JustMock configuration file
+*.jmconfig
+
+# BizTalk build output
+*.btp.cs
+*.btm.cs
+*.odx.cs
+*.xsd.cs
+
+# OpenCover UI analysis results
+OpenCover/
+
+# Azure Stream Analytics local run output
+ASALocalRun/
+
+# MSBuild Binary and Structured Log
+*.binlog
+MSBuild_Logs/
+
+# AWS SAM Build and Temporary Artifacts folder
+.aws-sam
+
+# NVidia Nsight GPU debugger configuration file
+*.nvuser
+
+# MFractors (Xamarin productivity tool) working folder
+**/.mfractor/
+
+# Local History for Visual Studio
+**/.localhistory/
+
+# Visual Studio History (VSHistory) files
+.vshistory/
+
+# BeatPulse healthcheck temp database
+healthchecksdb
+
+# Backup folder for Package Reference Convert tool in Visual Studio 2017
+MigrationBackup/
+
+# Ionide (cross platform F# VS Code tools) working folder
+**/.ionide/
+
+# Fody - auto-generated XML schema
+FodyWeavers.xsd
+
+# VS Code files for those working on multiple tools
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+!.vscode/*.code-snippets
+
+# Local History for Visual Studio Code
+.history/
+
+# Built Visual Studio Code Extensions
+*.vsix
+
+# Windows Installer files from build outputs
+*.cab
+*.msi
+*.msix
+*.msm
+*.msp
+
+.continue/
+</file>
+
+<file path=".repomixignore">
+# Add patterns to ignore here, one per line
+# Example:
+# *.log
+# tmp/
+</file>
+
+<file path="AiRagProxy.sln">
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AiRagProxy.Api", "src\AiRagProxy.Api\AiRagProxy.Api.csproj", "{00F5A154-5391-434E-925B-443CCA3DFD18}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{EAC69CCC-176B-42E2-914D-E79823E2590F}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{DB6210C1-F4F8-4EC1-8820-AFBE8C218AE0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AiRagProxy.Api.Tests", "tests\AiRagProxy.Api.Tests\AiRagProxy.Api.Tests.csproj", "{3505C606-5277-4111-9625-06631EC17A05}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AiRagProxy.Domain", "src\AiRagProxy.Domain\AiRagProxy.Domain.csproj", "{2C98BF99-4987-4E31-AD7C-C4F09D7A300F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AiRagProxy.Storage", "src\AiRagProxy.Storage\AiRagProxy.Storage.csproj", "{D53C8802-9DED-46D3-849F-1BCE54ED7607}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{00F5A154-5391-434E-925B-443CCA3DFD18}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{00F5A154-5391-434E-925B-443CCA3DFD18}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{00F5A154-5391-434E-925B-443CCA3DFD18}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{00F5A154-5391-434E-925B-443CCA3DFD18}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3505C606-5277-4111-9625-06631EC17A05}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3505C606-5277-4111-9625-06631EC17A05}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3505C606-5277-4111-9625-06631EC17A05}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3505C606-5277-4111-9625-06631EC17A05}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2C98BF99-4987-4E31-AD7C-C4F09D7A300F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2C98BF99-4987-4E31-AD7C-C4F09D7A300F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2C98BF99-4987-4E31-AD7C-C4F09D7A300F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2C98BF99-4987-4E31-AD7C-C4F09D7A300F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D53C8802-9DED-46D3-849F-1BCE54ED7607}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D53C8802-9DED-46D3-849F-1BCE54ED7607}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D53C8802-9DED-46D3-849F-1BCE54ED7607}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D53C8802-9DED-46D3-849F-1BCE54ED7607}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{00F5A154-5391-434E-925B-443CCA3DFD18} = {EAC69CCC-176B-42E2-914D-E79823E2590F}
+		{3505C606-5277-4111-9625-06631EC17A05} = {DB6210C1-F4F8-4EC1-8820-AFBE8C218AE0}
+		{2C98BF99-4987-4E31-AD7C-C4F09D7A300F} = {EAC69CCC-176B-42E2-914D-E79823E2590F}
+		{D53C8802-9DED-46D3-849F-1BCE54ED7607} = {EAC69CCC-176B-42E2-914D-E79823E2590F}
+	EndGlobalSection
+EndGlobal
+</file>
+
+<file path="docker-compose.yml">
+volumes:
+    db_data:
+
+services:
+  db: 
+    image: postgres:17.5
+    container_name: airagproxy-db
+    environment:
+      POSTGRES_USER: ${AI_RAG_PROXY_DB_USER:-airagproxy}
+      POSTGRES_PASSWORD: ${AI_RAG_PROXY_DB_PASSWORD:-airagproxy}
+      POSTGRES_DB: ${AI_RAG_PROXY_DB_NAME:-airagproxy}
+    ports:
+      - "${AI_RAG_PROXY_DB_PORT}:5432"
+    volumes:
+      - db_data:/var/lib/postgresql/data
+    restart: unless-stopped
+    healthcheck:
+      test:
+        [
+          "CMD-SHELL",
+          "pg_isready -U ${AI_RAG_PROXY_DB_USER:-airagproxy} -d ${AI_RAG_PROXY_DB_NAME:-airagproxy}",
+        ]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+  
+  
+  api:
+    build:
+      context: ./src
+      dockerfile: AiRagProxy.Api/Dockerfile
+    container_name: airagproxy_api
+    ports:
+      - "${AI_RAG_PROXY_API_PORT}:8080"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ConnectionStrings__DefaultConnection=Server=db;Database=${AI_RAG_PROXY_DB_NAME:-airagproxy};Username=${AI_RAG_PROXY_DB_USER:-${AI_RAG_PROXY_DB_PASSWORD:-airagproxy}};Password=${AI_RAG_PROXY_DB_PASSWORD:-airagproxy}
+      - OIDC__AUTHORITY=${AI_RAG_PROXY_OIDC_AUTHORITY}
+      - OIDC__AUDIENCE=${AI_RAG_PROXY_OIDC_AUDIENCE}
+      - OpenAi__BaseUrl=http://host.docker.internal:11434
+      - OpenAi__ApiKey=ollama
+    depends_on:
+      db:
+        condition: service_healthy
+    restart: unless-stopped
+    healthcheck:
+      test: [ "CMD", "curl", "-f", "http://localhost:8080/health" ]
+</file>
+
+<file path="docs/architecture.md">
+# AiRagProxy – Architecture Overview
+
+## Overview
+
+AiRagProxy is an OpenAI API-compatible ASP.NET Core Web API that integrates Retrieval-Augmented Generation (RAG). The system is designed to be model- and provider-agnostic, and it will support multiple authentication methods, monitoring, and advanced features such as Semantic Kernel function calling.
+
+---
+
+## 🔧 Tech Stack
+
+- ASP.NET Core Web API
+- .NET 9
+- Entity Framework Core (planned)
+- MongoDB (optional)
+- Semantic Kernel (planned)
+- Tabler.io (planned UI)
+- OpenTelemetry (planned for monitoring)
+
+---
+
+## 📐 High-Level Architecture
+
+```
+
+Client (Chat UI, API Consumers)
+│
+▼
+\[Authentication Layer (OIDC, Entra ID, Keycloak)]
+│
+▼
+AiRagProxy.Api (REST API)
+│
+├── /v1/chat/completions
+│       └── Request Pipeline:
+│             1. Validate + Auth
+│             2. Embedding (if RAG enabled)
+│             3. Vector Retrieval
+│             4. Prompt Augmentation
+│             5. Model Completion
+│
+└── /v1/embeddings (optional)
+
+```
+    ▼
+```
+
+Core Services
+├── IModelProvider
+├── IEmbeddingService
+├── IIndexService
+└── IRetrievalService
+
+```
+    ▼
+```
+
+Model Providers
+├── OpenAIProvider
+├── AzureOpenAIProvider
+├── OllamaProvider
+└── CohereProvider (planned)
+
+```
+    ▼
+```
+
+Vector Store / Index
+├── In-Memory (dev)
+├── EF Core (PostgreSQL, planned)
+└── MongoDB (optional)
+
+````
+
+---
+
+## 🔌 Model Provider Abstraction
+
+Each language model is accessed through a common interface:
+
+```csharp
+public interface IModelProvider
+{
+    Task<ChatCompletionResponse> GetChatCompletionAsync(ChatCompletionRequest request);
+    Task<EmbeddingResponse> GetEmbeddingAsync(EmbeddingRequest request);
+}
+````
+
+Providers implement the interface and can be selected via `appsettings.json`:
+
+```json
+"ModelProvider": {
+  "Active": "OpenAI",
+  "Providers": {
+    "OpenAI": {
+      "ApiKey": "xxx",
+      "BaseUrl": "https://api.openai.com/v1/"
+    },
+    "Ollama": {
+      "BaseUrl": "http://localhost:11434",
+      "Model": "mistral"
+    }
+  }
+}
+```
+
+---
+
+## 📄 Configuration Example
+
+### `appsettings.json`
+
+```json
+{
+  "OpenAI": {
+    "ApiKey": "..."
+  },
+  "Authentication": {
+    "Mode": "Entra",
+    "Entra": {
+      "TenantId": "...",
+      "ClientId": "...",
+      "Audience": "api://..."
+    }
+  }
+}
+```
+
+---
+
+## 🔒 Authentication and Authorization
+
+Supported Modes:
+
+* **Azure Entra ID**
+  OIDC-based JWT auth with API scopes and App Registration
+* **Keycloak**
+  Full OIDC support for self-hosted or company SSO
+* **Local Auth**
+  Simplified dev-mode authentication
+
+The authentication layer is pluggable using `Microsoft.AspNetCore.Authentication.JwtBearer`.
+
+---
+
+## 📂 Project Structure (planned)
+
+```
+AiRagProxy.sln
+│
+├── src/
+│   ├── AiRagProxy.Api/         # Main ASP.NET Core Web API
+│   ├── AiRagProxy.Core/        # Interfaces and shared logic
+│   ├── AiRagProxy.Providers/   # Model provider implementations
+│   ├── AiRagProxy.Index/       # Embedding + vector index handling
+│   └── AiRagProxy.Semantic/    # Integration with Semantic Kernel (future)
+│
+├── tests/
+│   └── AiRagProxy.Api.Tests/
+│
+└── docs/
+    └── architecture.md
+```
+
+---
+
+## 📊 Monitoring (Planned)
+
+* Token usage per user and provider
+* Request statistics
+* OpenTelemetry integration
+
+---
+
+## 📅 Roadmap Summary
+
+| Component                   | Status        |
+| --------------------------- | ------------- |
+| OpenAI-compatible endpoints | ✅ Ready       |
+| Provider abstraction        | ✅ Ready       |
+| RAG core services           | ⏳ In progress |
+| Multi-provider support      | ⏳ In progress |
+| Semantic Kernel integration | ⏳ Planned     |
+| Authentication (OIDC)       | ⏳ In progress |
+| UI (Tabler.io)              | ⏳ Planned     |
+| Monitoring + telemetry      | ⏳ Planned     |
+
+---
+
+## 🧠 Retrieval-Augmented Generation (RAG)
+
+1. **EmbeddingService**: Converts documents or queries into vector embeddings
+2. **IndexService**: Stores/retrieves document chunks with metadata
+3. **RetrievalService**: Finds relevant chunks based on query
+4. **PromptBuilder**: Constructs a context-enhanced prompt for completion
+
+---
+
+## 💡 Extensibility Goals
+
+* Add new providers with minimal effort
+* Allow configuration-based switching (no redeploys)
+* Enable fine-grained security (role-based access, scopes)
+* Build multiple UI frontends (admin/user separation)
+
+---
+
+*This document will be extended as the project evolves.*
+</file>
+
+<file path="LICENSE">
+MIT License
+
+Copyright (c) 2025 Torsten Werner
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+</file>
+
+<file path="README.md">
+# AiRagProxy
+
+AiRagProxy is an OpenAI API-compatible ASP.NET Core Web API that implements Retrieval-Augmented Generation (RAG). The project is designed to be provider-agnostic and extensible, allowing integration with various language models and vector search backends. In the future, it will support advanced features such as Semantic Kernel function calling.
+
+## Features
+
+- OpenAI API compatible endpoints (e.g., `/v1/chat/completions`)
+- Retrieval-Augmented Generation (RAG) to enhance responses with custom knowledge
+- Modular architecture with provider abstraction (OpenAI, Ollama, Azure, etc.)
+- Easy extension for embedding services and vector stores
+- Planned integration with Microsoft Semantic Kernel for function calling and workflow orchestration
+
+## Getting Started
+
+### Prerequisites
+
+- [.NET 9 SDK](https://dotnet.microsoft.com/download)
+- API key(s) for your chosen language model provider (e.g., OpenAI)
+
+### Running the API
+
+1. Clone the repository:
+```bash
+   git clone https://github.com/to-wer/ai-rag-proxy.git
+   cd ai-rag-proxy
+```
+
+2. Configure your API keys in `appsettings.json` or environment variables:
+
+```json
+   {
+     "OpenAI": {
+       "ApiKey": "your-openai-api-key"
+     }
+   }
+```
+
+3. Run the project:
+
+```bash
+   dotnet run --project src/AiRagProxy.Api/AiRagProxy.Api.csproj
+   ```
+
+4. The API will be available at `https://localhost:5001/v1/chat/completions`. Test the API with:
+```bash
+   curl -X POST "https://localhost:5001/v1/chat/completions" -H "Content-Type: application/json" -d '{
+     "model": "gpt-4",
+     "messages": [{"role": "user", "content": "What is RAG?"}]
+   }'
+```
+
+
+## Project Structure
+
+* `src/AiRagProxy.Api`: The main Web API project exposing OpenAI-compatible endpoints
+* `src/AiRagProxy.Core`: (planned) Core services and interfaces for RAG and providers
+* `src/AiRagProxy.Providers`: (planned) Implementation of different model providers
+* `tests/`: Unit and integration tests
+
+## Roadmap
+
+* [ ] Basic RAG implementation with embedding and vector retrieval
+* [ ] Support for multiple language model providers
+* [ ] Semantic Kernel integration for function calling and plugins
+* [ ] Docker support and deployment guides
+* [ ] Enhanced security and authentication features
+
+## Contributing
+
+Contributions are welcome! Feel free to open issues or submit pull requests.
+
+## License
+
+This project is licensed under the MIT License.
+</file>
+
+<file path="repomix.config.json">
+{
+  "output": {
+    "filePath": "repomix-output.xml",
+    "style": "xml",
+    "parsableStyle": false,
+    "fileSummary": true,
+    "directoryStructure": true,
+    "removeComments": false,
+    "removeEmptyLines": false,
+    "compress": false,
+    "topFilesLength": 5,
+    "showLineNumbers": false,
+    "copyToClipboard": false
+  },
+  "include": [],
+  "ignore": {
+    "useGitignore": true,
+    "useDefaultPatterns": true,
+    "customPatterns": []
+  },
+  "security": {
+    "enableSecurityCheck": true
+  },
+  "tokenCount": {
+    "encoding": "o200k_base"
+  }
+}
+</file>
+
+<file path="sample.env">
+# Database Configuration
+AI_RAG_PROXY_DB_PORT=5432
+AI_RAG_PROXY_DB_NAME=airagproxy
+AI_RAG_PROXY_DB_USER=airagproxy
+AI_RAG_PROXY_DB_PASSWORD=your_password_here
+
+AI_RAG_PROXY_API_PORT=8080
+
+AI_RAG_PROXY_OIDC_AUTHORITY=
+AI_RAG_PROXY_OIDC_AUDIENCE=
+
+AI_RAG_PROXY_UI_PORT=8081
+</file>
+
+<file path="src/.dockerignore">
+**/.dockerignore
+**/.env
+**/.git
+**/.gitignore
+**/.project
+**/.settings
+**/.toolstarget
+**/.vs
+**/.vscode
+**/.idea
+**/*.*proj.user
+**/*.dbmdl
+**/*.jfm
+**/azds.yaml
+**/bin
+**/charts
+**/docker-compose*
+**/Dockerfile*
+**/node_modules
+**/npm-debug.log
+**/obj
+**/secrets.dev.yaml
+**/values.dev.yaml
+LICENSE
+README.md
+</file>
+
+<file path="src/.idea/.idea.AiRagProxy/.idea/.gitignore">
+# Default ignored files
+/shelf/
+/workspace.xml
+# Rider ignored files
+/projectSettingsUpdater.xml
+/.idea.AiRagProxy.iml
+/modules.xml
+/contentModel.xml
+# Editor-based HTTP Client requests
+/httpRequests/
+# Datasource local storage ignored files
+/dataSources/
+/dataSources.local.xml
+</file>
+
+<file path="src/.idea/.idea.AiRagProxy/.idea/.name">
+AiRagProxy
+</file>
+
+<file path="src/.idea/.idea.AiRagProxy/.idea/indexLayout.xml">
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="UserContentModel">
+    <attachedFolders>
+      <Path>../../ai-rag-proxy</Path>
+    </attachedFolders>
+    <explicitIncludes />
+    <explicitExcludes />
+  </component>
+</project>
+</file>
+
+<file path="src/.idea/.idea.AiRagProxy/.idea/vcs.xml">
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="VcsDirectoryMappings">
+    <mapping directory="$PROJECT_DIR$/.." vcs="Git" />
+  </component>
+</project>
+</file>
+
+<file path="src/AiRagProxy.Api/AiRagProxy.Api.csproj">
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+    <PropertyGroup>
+        <TargetFramework>net9.0</TargetFramework>
+        <Nullable>enable</Nullable>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
+        <UserSecretsId>1acb286a-bc00-4951-bc43-6d378b947ff1</UserSecretsId>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Asp.Versioning.Mvc" Version="8.1.0"/>
+        <PackageReference Include="Asp.Versioning.Mvc.ApiExplorer" Version="8.1.0"/>
+        <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="9.0.6"/>
+        <PackageReference Include="Microsoft.AspNetCore.Authentication.OpenIdConnect" Version="9.0.6"/>
+        <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="9.0.5"/>
+        <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="9.0.7">
+          <PrivateAssets>all</PrivateAssets>
+          <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+        </PackageReference>
+        <PackageReference Include="Scalar.AspNetCore" Version="2.5.3"/>
+        <PackageReference Include="Serilog.AspNetCore" Version="9.0.0"/>
+        <PackageReference Include="Serilog.Settings.Configuration" Version="9.0.0"/>
+        <PackageReference Include="Serilog.Sinks.Console" Version="6.0.0"/>
+        <PackageReference Include="Serilog.Sinks.File" Version="7.0.0"/>
+    </ItemGroup>
+
+    <ItemGroup>
+        <Content Include="..\.dockerignore">
+            <Link>.dockerignore</Link>
+        </Content>
+    </ItemGroup>
+
+    <ItemGroup>
+        <ProjectReference Include="..\AiRagProxy.Domain\AiRagProxy.Domain.csproj"/>
+        <ProjectReference Include="..\AiRagProxy.Storage\AiRagProxy.Storage.csproj" />
+    </ItemGroup>
+
+</Project>
+</file>
+
+<file path="src/AiRagProxy.Api/AiRagProxy.Api.http">
+@AiRagProxy.Api_HostAddress = http://localhost:5259
+
+GET {{AiRagProxy.Api_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
+</file>
+
+<file path="src/AiRagProxy.Api/appsettings.Development.json">
+{
+  "Oidc": {
+    "Authority": "https://login.microsoftonline.com/f4df0d05-656f-47a1-bdba-4ba3841daba4",
+    "Audience": "api://a8231073-8f30-4ade-8628-d651ca9a8f94"
+  },
+  "Serilog": {
+    "MinimumLevel": {
+      "Default": "Debug",
+      "Override": {
+        "Microsoft": "Information",
+        "System": "Information"
+      }
+    }
+  }
+}
+</file>
+
+<file path="src/AiRagProxy.Api/appsettings.json">
+{
+  "ConnectionStrings": {
+    "DefaultConnection": ""
+  },
+  "AllowedHosts": "*",
+  "Oidc": {
+    "Authority": "https://dein-oidc-provider/.well-known/openid-configuration",
+    "Audience": "api://deine-client-id"
+  },
+  "OpenAi": {
+    "ApiKey": "",
+    "BaseUrl": "https://api.openai.com",
+    "Model": "gpt-3.5-turbo"
+  },
+  "RateLimiting": {
+    "PermitLimit": 100,
+    "WindowMinutes": 1,
+    "QueueLimit": 0
+  },
+  "Serilog": {
+    "Using": [ "Serilog.Sinks.Console", "Serilog.Sinks.File" ],
+    "MinimumLevel": {
+      "Default": "Information",
+      "Override": {
+        "Microsoft": "Warning",
+        "System": "Warning"
+      }
+    },
+    "WriteTo": [
+      { "Name": "Console" },
+      {
+        "Name": "File",
+        "Args": {
+          "path": "Logs/log-.txt",
+          "rollingInterval": "Day",
+          "outputTemplate": "[{Timestamp:yyyy-MM-dd HH:mm:ss} {Level:u3}] {Message:lj}{NewLine}{Exception}"
+        }
+      }
+    ],
+    "Enrich": [ "FromLogContext", "WithMachineName", "WithThreadId" ],
+    "Properties": {
+      "Application": "AiRagProxy.Api"
+    }
+  }
+}
+</file>
+
+<file path="src/AiRagProxy.Api/Configuration/ConfigureApiVersioningExtensions.cs">
+using Asp.Versioning;
+
+namespace AiRagProxy.Api.Configuration;
+
+/// <summary>
+/// Provides extension methods for configuring API versioning in the application.
+/// </summary>
+public static class ConfigureApiVersioningExtensions
+{
+    /// <summary>
+    /// Configures API versioning for the application.
+    /// </summary>
+    /// <param name="services">The <see cref="IServiceCollection"/> to add the API versioning services to.</param>
+    /// <returns>The updated <see cref="IServiceCollection"/>.</returns>
+    public static IServiceCollection ConfigureApiVersioning(this IServiceCollection services)
+    {
+        services.AddApiVersioning(options =>
+            {
+                options.DefaultApiVersion = new ApiVersion(1);
+                options.AssumeDefaultVersionWhenUnspecified = true;
+                options.ReportApiVersions = true;
+                options.ApiVersionReader = new UrlSegmentApiVersionReader();
+            })
+            .AddMvc()
+            .AddApiExplorer(options =>
+            {
+                options.GroupNameFormat = "'v'V";
+                options.SubstituteApiVersionInUrl = true;
+            });
+
+        return services;
+    }
+}
+</file>
+
+<file path="src/AiRagProxy.Api/Configuration/ConfigureAuthExtensions.cs">
+using AiRagProxy.Api.Middlewares;
+using AiRagProxy.Api.Services.Interfaces;
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
+
+namespace AiRagProxy.Api.Configuration;
+
+/// <summary>
+/// Provides extension methods for configuring authentication and authorization in the application.
+/// </summary>
+public static class ConfigureAuthExtensions
+{
+    /// <summary>
+    /// Configures authentication and authorization for the application.
+    /// </summary>
+    /// <param name="services">The <see cref="IServiceCollection"/> to add the authentication and authorization services to.</param>
+    /// <param name="configuration">The <see cref="IConfiguration"/> containing the application's configuration settings.</param>
+    /// <param name="hostEnvironment"></param>
+    /// <returns>The updated <see cref="IServiceCollection"/>.</returns>
+    public static IServiceCollection ConfigureAuthentication(this IServiceCollection services,
+        IConfiguration configuration,
+        IHostEnvironment hostEnvironment)
+    {
+        var oidcConfig = configuration.GetSection("Oidc");
+        services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+            .AddJwtBearer(JwtBearerDefaults.AuthenticationScheme, options =>
+            {
+                options.Authority = oidcConfig["Authority"];
+                options.Audience = oidcConfig["Audience"];
+                options.TokenValidationParameters = new TokenValidationParameters
+                {
+                    ValidIssuer = oidcConfig["Authority"],
+                    ValidateIssuer = true,
+                    ValidateAudience = true,
+                    ValidateLifetime = true,
+                    ValidateIssuerSigningKey = true
+                };
+                if (!hostEnvironment.IsDevelopment())
+                {
+                    options.RequireHttpsMetadata = false;
+                }
+
+                options.Events = new JwtBearerEvents
+                {
+                    OnTokenValidated = async context =>
+                    {
+                        var claims = context.Principal;
+                        var userService = context.HttpContext.RequestServices.GetRequiredService<IUserService>();
+                        if (claims != null) await userService.SyncUser(claims);
+                    }
+                };
+            })
+            .AddScheme<AuthenticationSchemeOptions, PatAuthenticationHandler>("PAT", options => { });
+
+        services.AddAuthorization();
+
+        return services;
+    }
+}
+</file>
+
+<file path="src/AiRagProxy.Api/Configuration/ConfigureCorsExtensions.cs">
+namespace AiRagProxy.Api.Configuration;
+
+/// <summary>
+/// Provides extension methods for configuring CORS in the application.
+/// </summary>
+public static class ConfigureCorsExtensions
+{
+    /// <summary>
+    /// Configures CORS for the application.
+    /// </summary>
+    /// <param name="services">The <see cref="IServiceCollection"/> to add the CORS services to.</param>
+    /// <returns>The updated <see cref="IServiceCollection"/>.</returns>
+    public static IServiceCollection ConfigureCors(this IServiceCollection services)
+    {
+        services.AddCors(options =>
+        {
+            // TODO: check the CORS policy and adjust it as needed
+            options.AddPolicy("RestrictedCors", policy =>
+            {
+                policy.WithOrigins("https://to-wer.de")
+                    .AllowAnyHeader()
+                    .AllowAnyMethod();
+            });
+        });
+
+        return services;
+    }
+}
+</file>
+
+<file path="src/AiRagProxy.Api/Configuration/ConfigureRateLimitingExtensions.cs">
+using Microsoft.AspNetCore.RateLimiting;
+
+namespace AiRagProxy.Api.Configuration;
+
+/// <summary>
+/// Provides extension methods for configuring rate limiting in the application.
+/// </summary>
+public static class ConfigureRateLimitingExtensions
+{
+    /// <summary>
+    /// Configures rate limiting for the application.
+    /// </summary>
+    /// <param name="services">The <see cref="IServiceCollection"/> to add the rate limiting services to.</param>
+    /// <param name="configuration">The <see cref="IConfiguration"/> containing the application's configuration settings.</param>
+    /// <returns>The updated <see cref="IServiceCollection"/>.</returns>
+    /// <exception cref="ArgumentNullException">Thrown when rate limiting options are not configured.</exception>
+    public static IServiceCollection ConfigureRateLimiting(this IServiceCollection services,
+        IConfiguration configuration)
+    {
+        var rateLimitingOptions = configuration.GetSection("RateLimiting").Get<RateLimitingOptions>();
+        if (rateLimitingOptions == null)
+        {
+            throw new ArgumentNullException(nameof(rateLimitingOptions), "Rate limiting options are not configured.");
+        }
+
+        services.AddRateLimiter(options =>
+        {
+            options.AddFixedWindowLimiter("default", builder =>
+            {
+                builder.PermitLimit = rateLimitingOptions.PermitLimit;
+                builder.Window = TimeSpan.FromMinutes(rateLimitingOptions.WindowMinutes);
+                builder.QueueLimit = rateLimitingOptions.QueueLimit;
+            });
+        });
+
+        return services;
+    }
+}
+</file>
+
+<file path="src/AiRagProxy.Api/Configuration/ConfigureServicesExtensions.cs">
+using AiRagProxy.Api.Services;
+using AiRagProxy.Api.Services.Interfaces;
+
+namespace AiRagProxy.Api.Configuration;
+
+public static class ConfigureServicesExtensions
+{
+    public static IServiceCollection ConfigureServices(this IServiceCollection services, IConfiguration configuration)
+    {
+        services.AddScoped<IUserService, UserService>();
+        services.AddHttpClient<IOpenAiCommunicationService, OpenAiCommunicationService>(client =>
+        {
+            client.BaseAddress = new Uri(configuration["OpenAi:BaseUrl"] ?? "https://api.openai.com/v1/");
+            
+            var apiKey = configuration["OpenAi:ApiKey"];
+            if (!string.IsNullOrEmpty(apiKey))
+            {
+                client.DefaultRequestHeaders.Add("Authorization", $"Bearer {apiKey}");
+            }
+        });
+        services.AddScoped<ITokenValidationService, TokenValidationService>();
+        services.AddScoped<ITokenGeneratorService, TokenGeneratorService>();
+        services.AddScoped<IPatService, PatService>();
+
+        return services;
+    }
+}
+</file>
+
+<file path="src/AiRagProxy.Api/Configuration/RateLimitingOptions.cs">
+namespace AiRagProxy.Api.Configuration
+{
+    /// <summary>
+    /// Represents the configuration options for rate limiting in the application.
+    /// </summary>
+    public class RateLimitingOptions
+    {
+        /// <summary>
+        /// Gets or sets the maximum number of permits allowed within the rate limiting window.
+        /// Default value is 100.
+        /// </summary>
+        public int PermitLimit { get; set; } = 100;
+
+        /// <summary>
+        /// Gets or sets the duration of the rate limiting window in minutes.
+        /// Default value is 1 minute.
+        /// </summary>
+        public int WindowMinutes { get; set; } = 1;
+
+        /// <summary>
+        /// Gets or sets the maximum number of requests that can be queued.
+        /// Default value is 0.
+        /// </summary>
+        public int QueueLimit { get; set; } = 0;
+    }
+}
+</file>
+
+<file path="src/AiRagProxy.Api/Controllers/Admin/UsersController.cs">
+using Asp.Versioning;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
+
+namespace AiRagProxy.Api.Controllers.Admin;
+
+[Authorize(Roles = "Admin")]
+[ApiVersion(1)]
+public class UsersController : BaseController
+{
+    [HttpGet]
+    [MapToApiVersion(1)]
+    public IActionResult Get()
+    {
+        throw new NotImplementedException("This endpoint is not implemented yet.");
+    }
+}
+</file>
+
+<file path="src/AiRagProxy.Api/Controllers/BaseController.cs">
+using Microsoft.AspNetCore.Mvc;
+
+namespace AiRagProxy.Api.Controllers;
+
+/// <summary>
+/// Serves as the base class for all API controllers in the application.
+/// Provides common functionality for derived controllers.
+/// </summary>
+[ApiController]
+[Route("api/v{version:apiVersion}/[controller]")]
+public abstract class BaseController : ControllerBase
+{
+    // This class is intentionally left empty as a base for other controllers.
+}
+</file>
+
+<file path="src/AiRagProxy.Api/Controllers/Ollama/ChatController.cs">
+using AiRagProxy.Domain.Dtos.Ollama;
+using Microsoft.AspNetCore.Mvc;
+
+namespace AiRagProxy.Api.Controllers.Ollama;
+
+public class ChatController : OllamaBaseController
+{
+    [HttpPost]
+    public IActionResult Post([FromBody] OllamaChatCompletionRequest request)
+    {
+        throw new NotImplementedException();
+    }
+}
+</file>
+
+<file path="src/AiRagProxy.Api/Controllers/Ollama/OllamaBaseController.cs">
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
+
+namespace AiRagProxy.Api.Controllers.Ollama;
+
+[Route("ollama/[controller]")]
+[Authorize]
+public abstract class OllamaBaseController : BaseController
+{
+    
+}
+</file>
+
+<file path="src/AiRagProxy.Api/Controllers/OpenAi/ChatController.cs">
+using System.Text.Json;
+using AiRagProxy.Api.Services.Interfaces;
+using AiRagProxy.Domain.Dtos.OpenAi;
+using Asp.Versioning;
+using Microsoft.AspNetCore.Mvc;
+
+namespace AiRagProxy.Api.Controllers.OpenAi;
+
+[ApiVersion(1)]
+public class ChatController(IOpenAiCommunicationService communicationService) : OpenAiBaseController
+{
+    [HttpPost("completions")]
+    [MapToApiVersion(1)]
+    public async Task<IActionResult> Completions([FromBody] OpenAiChatCompletionRequest request, CancellationToken cancellationToken = default)
+    {
+        if (request.Stream)
+        {
+            Response.ContentType = "text/event-stream";
+            
+            await foreach (var chunk in communicationService.CreateChatCompletionStreaming(request, cancellationToken))
+            {
+                var json = JsonSerializer.Serialize(chunk);
+                await Response.WriteAsync($"data: {json}\n\n", cancellationToken);
+                await Response.Body.FlushAsync(cancellationToken);
+            }
+            return new EmptyResult();
+        }
+        var response = await communicationService.CreateChatCompletion(request);
+        return Ok(response);
+    }
+}
+</file>
+
+<file path="src/AiRagProxy.Api/Controllers/OpenAi/ModelsController.cs">
+using AiRagProxy.Api.Services.Interfaces;
+using Asp.Versioning;
+using Microsoft.AspNetCore.Mvc;
+
+namespace AiRagProxy.Api.Controllers.OpenAi;
+
+[ApiVersion(1)]
+public class ModelsController(IOpenAiCommunicationService openAiCommunicationService) : OpenAiBaseController
+{
+    [HttpGet]
+    [MapToApiVersion(1)]
+    public async Task<IActionResult> GetModels(CancellationToken cancellationToken = default)
+    {
+        var models = await openAiCommunicationService.GetModels(cancellationToken);
+        return Ok(models);
+    }
+}
+</file>
+
+<file path="src/AiRagProxy.Api/Controllers/OpenAi/OpenAiBaseController.cs">
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
+
+namespace AiRagProxy.Api.Controllers.OpenAi;
+
+[Route("openai/v{version:apiVersion}/[controller]")]
+[Authorize(AuthenticationSchemes = "Bearer,PAT")]
+public abstract class OpenAiBaseController : BaseController
+{
+}
+</file>
+
+<file path="src/AiRagProxy.Api/Controllers/PersonalAccessTokensController.cs">
+using AiRagProxy.Api.Services.Interfaces;
+using AiRagProxy.Domain.Dtos.PersonalAccessToken;
+using Asp.Versioning;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
+
+namespace AiRagProxy.Api.Controllers;
+
+[Authorize]
+[ApiVersion(1)]
+public class PersonalAccessTokensController(IPatService patService,
+    IUserService userService) : BaseController
+{
+    [HttpPost]
+    [MapToApiVersion(1)]
+    public async Task<ActionResult<CreateTokenResponse>> Create([FromBody] CreateTokenRequest request)
+    {
+        var userId = await userService.GetCurrentUserId(User);
+        if (userId == null)
+        {
+            return Unauthorized();
+        }
+
+        var token = await patService.CreateTokenAsync(userId.Value, request);
+        return Ok(token);
+    }
+
+}
+</file>
+
+<file path="src/AiRagProxy.Api/Dockerfile">
+FROM mcr.microsoft.com/dotnet/aspnet:9.0 AS base
+RUN apt-get update && apt-get install curl -y && apt-get clean
+USER $APP_UID
+WORKDIR /app
+EXPOSE 8080
+EXPOSE 8081
+
+FROM mcr.microsoft.com/dotnet/sdk:9.0 AS build
+ARG BUILD_CONFIGURATION=Release
+WORKDIR /src
+COPY ["AiRagProxy.Api/AiRagProxy.Api.csproj", "AiRagProxy.Api/"]
+COPY ["AiRagProxy.Domain/AiRagProxy.Domain.csproj", "AiRagProxy.Domain/"]
+COPY ["AiRagProxy.Storage/AiRagProxy.Storage.csproj", "AiRagProxy.Storage/"]
+RUN dotnet restore "AiRagProxy.Api/AiRagProxy.Api.csproj"
+COPY . .
+WORKDIR "/src/AiRagProxy.Api"
+RUN dotnet build "./AiRagProxy.Api.csproj" -c $BUILD_CONFIGURATION -o /app/build
+
+FROM build AS publish
+ARG BUILD_CONFIGURATION=Release
+RUN dotnet publish "./AiRagProxy.Api.csproj" -c $BUILD_CONFIGURATION -o /app/publish /p:UseAppHost=false
+
+FROM base AS final
+WORKDIR /app
+COPY --from=publish /app/publish .
+ENTRYPOINT ["dotnet", "AiRagProxy.Api.dll"]
+</file>
+
+<file path="src/AiRagProxy.Api/Middlewares/ErrorHandlingMiddleware.cs">
+using System.Text.Json;
+using Microsoft.AspNetCore.Mvc;
+
+namespace AiRagProxy.Api.Middlewares;
+
+/// <summary>
+/// Middleware for handling exceptions and returning standardized error responses.
+/// </summary>
+public class ErrorHandlingMiddleware
+{
+    private readonly RequestDelegate _next;
+    private readonly ILogger<ErrorHandlingMiddleware> _logger;
+
+    /// <summary>
+    /// Initializes a new instance of the <see cref="ErrorHandlingMiddleware"/> class.
+    /// </summary>
+    /// <param name="next">The next middleware in the pipeline.</param>
+    /// <param name="logger">The logger instance for logging errors.</param>
+    public ErrorHandlingMiddleware(RequestDelegate next, ILogger<ErrorHandlingMiddleware> logger)
+    {
+        _next = next;
+        _logger = logger;
+    }
+
+    /// <summary>
+    /// Invokes the middleware to process the HTTP request and handle any exceptions.
+    /// </summary>
+    /// <param name="context">The <see cref="HttpContext"/> for the current request.</param>
+    /// <returns>A task representing the asynchronous operation.</returns>
+    public async Task Invoke(HttpContext context)
+    {
+        try
+        {
+            // Passes the request to the next middleware in the pipeline.
+            await _next(context);
+        }
+        catch (Exception ex)
+        {
+            // Logs the exception and prepares a standardized error response.
+            _logger.LogError(ex, "An unhandled exception occurred while processing the request.");
+
+            context.Response.ContentType = "application/problem+json";
+
+            var problemDetails = new ProblemDetails
+            {
+                Type = "https://tools.ietf.org/html/rfc9110#section-15.5.1",
+                Title = "An unexpected error occurred.",
+                Status = StatusCodes.Status500InternalServerError,
+                Detail = ex.Message,
+                Instance = context.Request.Path
+            };
+
+            context.Response.StatusCode = problemDetails.Status ?? 500;
+            await context.Response.WriteAsync(JsonSerializer.Serialize(problemDetails));
+        }
+    }
+}
+</file>
+
+<file path="src/AiRagProxy.Api/Middlewares/PatAuthenticationHandler.cs">
+using System.Security.Claims;
+using System.Text.Encodings.Web;
+using AiRagProxy.Api.Services.Interfaces;
+using AiRagProxy.Domain.Dtos.PersonalAccessToken;
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.Extensions.Options;
+
+namespace AiRagProxy.Api.Middlewares;
+
+public class PatAuthenticationHandler(
+    ITokenValidationService tokenValidationService,
+    IOptionsMonitor<AuthenticationSchemeOptions> options,
+    ILoggerFactory loggerFactory, 
+    UrlEncoder encoder) : AuthenticationHandler<AuthenticationSchemeOptions>(options, loggerFactory, encoder)
+{
+    protected override async Task<AuthenticateResult> HandleAuthenticateAsync()
+    {
+        string? authHeader = Request.Headers["Authorization"];
+        if(string.IsNullOrWhiteSpace(authHeader) || !authHeader.StartsWith("Bearer "))
+        {
+            return AuthenticateResult.NoResult();
+        }
+        
+        var token = authHeader.Substring("Bearer ".Length).Trim();
+        if (string.IsNullOrWhiteSpace(token))
+        {
+            return AuthenticateResult.NoResult();
+        }
+        
+        var validatedToken = await tokenValidationService.ValidateToken(token);
+        
+        if (validatedToken == null)
+        {
+            return AuthenticateResult.Fail("Invalid or expired PAT");
+        }
+
+        var claims = new List<Claim>()
+        {
+            new(ClaimTypes.NameIdentifier, validatedToken.ExternalId),
+            new(ClaimTypes.Name, validatedToken.DisplayName ?? validatedToken.Email),
+            new("pat_id", validatedToken.TokenId.ToString())
+        };
+
+        var identity = new ClaimsIdentity(claims, Scheme.Name);
+        var principal = new ClaimsPrincipal(identity);
+        var ticket = new AuthenticationTicket(principal, Scheme.Name);
+
+		
+        return AuthenticateResult.Success(ticket);
+    }
+}
+</file>
+
+<file path="src/AiRagProxy.Api/Program.cs">
+using AiRagProxy.Api.Configuration;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using System.Threading.RateLimiting;
+using AiRagProxy.Api.Middlewares;
+using AiRagProxy.Storage.Configuration;
+using AiRagProxy.Storage.Services.Interfaces;
+using Scalar.AspNetCore;
+using Serilog;
+
+var builder = WebApplication.CreateBuilder(args);
+
+// Serilog-Konfiguration laden
+Log.Logger = new LoggerConfiguration()
+    .ReadFrom.Configuration(builder.Configuration)
+    .Enrich.FromLogContext()
+    .CreateLogger();
+
+builder.Host.UseSerilog();
+
+// Add services to the container.
+builder.Services.AddOpenApi();
+
+builder.Services.ConfigureAuthentication(builder.Configuration, builder.Environment);
+builder.Services.ConfigureApiVersioning();
+builder.Services.ConfigureCors();
+
+builder.Services.AddStorageServices(builder.Configuration);
+builder.Services.ConfigureServices(builder.Configuration);
+
+builder.Services.AddControllers();
+
+builder.Services.AddHealthChecks();
+builder.Services.ConfigureRateLimiting(builder.Configuration);
+
+var app = builder.Build();
+
+// Configure the HTTP request pipeline.
+if (app.Environment.IsDevelopment())
+{
+    app.MapOpenApi();
+    app.MapScalarApiReference();
+}
+else
+{
+    app.UseHsts();
+}
+
+app.UseHttpsRedirection();
+
+app.UseMiddleware<ErrorHandlingMiddleware>();
+
+app.UseRouting();
+
+using (var scope = app.Services.CreateScope())
+{
+    var storageService = scope.ServiceProvider.GetRequiredService<IAiRagProxyStorageService>();
+    await storageService.MigrateDatabase();
+}
+
+// Auth middlewares
+app.UseAuthentication();
+app.UseAuthorization();
+app.UseRateLimiter();
+
+
+app.MapControllers();
+
+// Health Check Endpoint
+app.MapHealthChecks("/health");
+
+try
+{
+    Log.Information("Starting up");
+    await app.RunAsync();
+}
+catch (Exception ex)
+{
+    Log.Fatal(ex, "Application start-up failed");
+    throw;
+}
+finally
+{
+    Log.CloseAndFlush();
+}
+</file>
+
+<file path="src/AiRagProxy.Api/Properties/launchSettings.json">
+{
+  "$schema": "https://json.schemastore.org/launchsettings.json",
+  "profiles": {
+    "http": {
+      "commandName": "Project",
+      "dotnetRunMessages": true,
+      "launchBrowser": false,
+      "applicationUrl": "http://localhost:5259",
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      }
+    },
+    "https": {
+      "commandName": "Project",
+      "dotnetRunMessages": true,
+      "launchBrowser": false,
+      "applicationUrl": "https://localhost:7179;http://localhost:5259",
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      }
+    }
+  }
+}
+</file>
+
+<file path="src/AiRagProxy.Api/Services/Interfaces/IOpenAiCommunicationService.cs">
+using AiRagProxy.Domain.Dtos.OpenAi;
+
+namespace AiRagProxy.Api.Services.Interfaces;
+
+public interface IOpenAiCommunicationService
+{
+    Task<OpenAiChatCompletionResponse> CreateChatCompletion(OpenAiChatCompletionRequest request);
+
+    IAsyncEnumerable<ChatCompletionChunk> CreateChatCompletionStreaming(OpenAiChatCompletionRequest request,
+        CancellationToken cancellationToken = default);
+    
+    Task<ModelsResponse?> GetModels(CancellationToken cancellationToken = default);
+    
+}
+</file>
+
+<file path="src/AiRagProxy.Api/Services/Interfaces/IPatService.cs">
+using AiRagProxy.Domain.Dtos.PersonalAccessToken;
+
+namespace AiRagProxy.Api.Services.Interfaces;
+
+public interface IPatService
+{
+    Task<CreateTokenResponse> CreateTokenAsync(Guid userId, CreateTokenRequest request);
+    Task<List<TokenResponse>> GetTokensAsync(Guid userId);
+    Task DeleteTokenAsync(Guid tokenId);
+}
+</file>
+
+<file path="src/AiRagProxy.Api/Services/Interfaces/ITokenGeneratorService.cs">
+namespace AiRagProxy.Api.Services.Interfaces;
+
+public interface ITokenGeneratorService
+{
+    string GenerateToken();
+    string HashToken(string token);
+}
+</file>
+
+<file path="src/AiRagProxy.Api/Services/Interfaces/ITokenValidationService.cs">
+using AiRagProxy.Domain.Dtos.PersonalAccessToken;
+
+namespace AiRagProxy.Api.Services.Interfaces;
+
+public interface ITokenValidationService
+{
+    Task<ValidatedToken?> ValidateToken(string token);
+}
+</file>
+
+<file path="src/AiRagProxy.Api/Services/Interfaces/IUserService.cs">
+using System.Security.Claims;
+
+namespace AiRagProxy.Api.Services.Interfaces;
+
+public interface IUserService
+{
+    Task SyncUser(ClaimsPrincipal principal);
+    Task<Guid?> GetCurrentUserId(ClaimsPrincipal principal);
+}
+</file>
+
+<file path="src/AiRagProxy.Api/Services/OpenAiCommunicationService.cs">
+using System.Runtime.CompilerServices;
+using System.Text.Json;
+using AiRagProxy.Api.Services.Interfaces;
+using AiRagProxy.Domain.Dtos.OpenAi;
+
+namespace AiRagProxy.Api.Services;
+
+public class OpenAiCommunicationService(
+    HttpClient httpClient,
+    ILogger<OpenAiCommunicationService> logger)
+    : IOpenAiCommunicationService
+{
+    public async Task<OpenAiChatCompletionResponse> CreateChatCompletion(OpenAiChatCompletionRequest request)
+    {
+        try
+        {
+            logger.LogInformation("Sending chat completion request to OpenAI API");
+
+            var response = await httpClient.PostAsJsonAsync("v1/chat/completions", request);
+
+            if (!response.IsSuccessStatusCode)
+            {
+                var errorContent = await response.Content.ReadAsStringAsync();
+                logger.LogError("OpenAI API request failed with status code {StatusCode}: {ErrorContent}",
+                    response.StatusCode, errorContent);
+                throw new HttpRequestException(
+                    $"OpenAI API request failed with status code {response.StatusCode}: {errorContent}");
+            }
+
+            var completionResponse = await response.Content.ReadFromJsonAsync<OpenAiChatCompletionResponse>();
+
+            if (completionResponse == null)
+            {
+                throw new JsonException("Failed to deserialize OpenAI API response");
+            }
+
+            return completionResponse;
+        }
+        catch (HttpRequestException ex)
+        {
+            logger.LogError(ex, "Error calling OpenAI API: {Message}", ex.Message);
+            throw;
+        }
+        catch (Exception ex)
+        {
+            logger.LogError(ex, "Unexpected error during chat completion: {Message}", ex.Message);
+            throw;
+        }
+    }
+
+    public async IAsyncEnumerable<ChatCompletionChunk> CreateChatCompletionStreaming(
+        OpenAiChatCompletionRequest request,
+        [EnumeratorCancellation] CancellationToken cancellationToken = default)
+    {
+        logger.LogInformation("Sending streaming chat completion request to OpenAI API");
+
+        var response = await httpClient.PostAsJsonAsync("v1/chat/completions", request, cancellationToken);
+
+        if (!response.IsSuccessStatusCode)
+        {
+            var errorContent = await response.Content.ReadAsStringAsync(cancellationToken);
+            logger.LogError("OpenAI API streaming request failed with status code {StatusCode}: {ErrorContent}",
+                response.StatusCode, errorContent);
+            throw new HttpRequestException(
+                $"OpenAI API request failed with status code {response.StatusCode}: {errorContent}");
+        }
+
+        var stream = await response.Content.ReadAsStreamAsync(cancellationToken);
+        using var reader = new StreamReader(stream);
+
+        while (!reader.EndOfStream && !cancellationToken.IsCancellationRequested)
+        {
+            var line = await reader.ReadLineAsync(cancellationToken);
+
+            if (string.IsNullOrEmpty(line))
+            {
+                continue;
+            }
+
+            if (line == "data: [DONE]")
+            {
+                yield break;
+            }
+
+            if (line.StartsWith("data: "))
+            {
+                var jsonData = line.Substring("data: ".Length);
+
+                var chunkResponse = JsonSerializer.Deserialize<ChatCompletionChunk>(jsonData);
+
+                if (chunkResponse != null)
+                {
+                    yield return chunkResponse;
+                }
+            }
+        }
+    }
+
+    public async Task<ModelsResponse?> GetModels(CancellationToken cancellationToken = default)
+    {
+        var response = await httpClient.GetAsync("/v1/models", cancellationToken);
+
+        if (!response.IsSuccessStatusCode)
+        {
+            var error = await response.Content.ReadAsStringAsync(cancellationToken);
+            logger.LogError("An error occured: {Error}", error);
+        }
+		
+        var json = await response.Content.ReadAsStringAsync(cancellationToken);
+        var result = JsonSerializer.Deserialize<ModelsResponse>(json);
+
+        return result;
+    }
+}
+</file>
+
+<file path="src/AiRagProxy.Api/Services/PatService.cs">
+using AiRagProxy.Api.Services.Interfaces;
+using AiRagProxy.Domain.Dtos.PersonalAccessToken;
+using AiRagProxy.Storage.Entities;
+using AiRagProxy.Storage.Services.Interfaces;
+
+namespace AiRagProxy.Api.Services;
+
+public class PatService(IAiRagProxyStorageService storageService,
+    ITokenGeneratorService tokenGenerator) : IPatService
+{
+    public async Task<CreateTokenResponse> CreateTokenAsync(Guid userId, CreateTokenRequest request)
+    {
+        var plainToken = tokenGenerator.GenerateToken();
+        var hash = tokenGenerator.HashToken(plainToken);
+
+        DateTime? expiresAt = request.ExpireDays.HasValue
+            ? DateTime.UtcNow.AddDays(request.ExpireDays.Value)
+            : null;
+
+        PersonalAccessToken token = await storageService.SavePersonalAccessToken(hash, request.Name, expiresAt, userId);
+
+        return new CreateTokenResponse()
+        {
+            Id = token.Id,
+            Name = token.Name,
+            PlaintextToken = plainToken,
+            CreatedAt = token.CreatedAt,
+            ExpiresAt = token.ExpiresAt
+        };
+    }
+
+    public async Task<List<TokenResponse>> GetTokensAsync(Guid userId)
+    {
+        var personalAccessTokens = await storageService.GetPersonalAccessTokens(userId);
+        return personalAccessTokens.Select(x =>
+            new TokenResponse
+            {
+                Id = x.Id, Name = x.Name, CreatedAt = x.CreatedAt, ExpiresAt = x.ExpiresAt,
+            }
+        ).ToList();
+    }
+
+    public async Task DeleteTokenAsync(Guid tokenId)
+    {
+        throw new NotImplementedException();
+    }
+}
+</file>
+
+<file path="src/AiRagProxy.Api/Services/TokenGeneratorService.cs">
+using System.Security.Cryptography;
+using System.Text;
+using AiRagProxy.Api.Services.Interfaces;
+
+namespace AiRagProxy.Api.Services;
+
+public class TokenGeneratorService : ITokenGeneratorService
+{
+    public string GenerateToken()
+    {
+        var bytes = RandomNumberGenerator.GetBytes(32);
+        return Convert.ToBase64String(bytes);
+    }
+
+    public string HashToken(string token)
+    {
+        using var sha = SHA256.Create();
+        var bytes = sha.ComputeHash(Encoding.UTF8.GetBytes(token));
+        return Convert.ToHexString(bytes);
+    }
+}
+</file>
+
+<file path="src/AiRagProxy.Api/Services/TokenValidationService.cs">
+using System.Security.Cryptography;
+using System.Text;
+using AiRagProxy.Api.Services.Interfaces;
+using AiRagProxy.Domain.Dtos.PersonalAccessToken;
+using AiRagProxy.Storage.Services.Interfaces;
+
+namespace AiRagProxy.Api.Services;
+
+public class TokenValidationService(IAiRagProxyStorageService storageService) : ITokenValidationService
+{
+    public async Task<ValidatedToken?> ValidateToken(string token)
+    {
+        if (string.IsNullOrWhiteSpace(token))
+        {
+            return null;
+        }
+
+        var tokenHash = ComputeSha256Hash(token);
+
+        var pat = await storageService.GetPersonalAccessToken(tokenHash);
+
+        if (pat?.User == null)
+        {
+            return null;
+        }
+		
+        var validatedToken = new ValidatedToken
+        {
+            TokenId = pat.Id,
+            UserId = pat.UserId,
+            TeamId = null,
+            ExpiresAt = pat.ExpiresAt,
+            ExternalId = pat.User.ExternalId,
+            Email = pat.User.Email,
+            DisplayName = pat.User.DisplayName
+        };
+		
+        return validatedToken;
+    }
+	
+    private static string ComputeSha256Hash(string rawData)
+    {
+        using var sha256 = SHA256.Create();
+        var bytes = sha256.ComputeHash(Encoding.UTF8.GetBytes(rawData));
+        return Convert.ToHexString(bytes);
+    }
+}
+</file>
+
+<file path="src/AiRagProxy.Api/Services/UserService.cs">
+using System.Security.Claims;
+using AiRagProxy.Api.Services.Interfaces;
+using AiRagProxy.Storage.Services.Interfaces;
+
+namespace AiRagProxy.Api.Services;
+
+public class UserService(IAiRagProxyStorageService storageService) : IUserService
+{
+    public async Task SyncUser(ClaimsPrincipal principal)
+    {
+        var sub = principal.FindFirst(ClaimTypes.NameIdentifier)?.Value ?? principal.FindFirst("sub")?.Value;
+        var email = principal.FindFirst(ClaimTypes.Email)?.Value ?? "unknown";
+        var name = principal.FindFirst(ClaimTypes.Name)?.Value ?? "unknown";
+
+        var issuer = principal.FindFirst("iss")?.Value ?? "unknown";
+        
+        if (string.IsNullOrEmpty(sub))
+        {
+            throw new Exception("Mising subject (sub) claim in token.");
+        }
+
+        if (!await storageService.UserExists(sub, issuer))
+        {
+            await storageService.AddUser(sub, issuer, email, name);
+        }
+        else
+        {
+            await storageService.UpdateUser(sub, issuer, email, name);
+        }
+    }
+
+    public async Task<Guid?> GetCurrentUserId(ClaimsPrincipal principal)
+    {
+        var sub = principal.FindFirstValue(ClaimTypes.NameIdentifier) ??
+                  principal.FindFirstValue("sub");
+        var issuer = principal.FindFirst("iss")?.Value ?? "unknown";
+
+        if (string.IsNullOrEmpty(sub))
+        {
+            throw new Exception("Missing subject (sub) claim in token");
+        }
+
+        return await storageService.GetUserIdBySubject(sub, issuer);
+    }
+}
+</file>
+
+<file path="src/AiRagProxy.Domain/AiRagProxy.Domain.csproj">
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net9.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <PackageReference Include="Microsoft.EntityFrameworkCore" Version="9.0.7" />
+    </ItemGroup>
+
+</Project>
+</file>
+
+<file path="src/AiRagProxy.Domain/Dtos/Ollama/OllamaChatCompletionRequest.cs">
+using System.Text.Json.Serialization;
+
+namespace AiRagProxy.Domain.Dtos.Ollama;
+
+public class OllamaChatCompletionRequest
+{
+    [JsonPropertyName("model")] public required string Model { get; set; }
+
+    [JsonPropertyName("messages")] public required List<OllamaChatMessage> Messages { get; set; }
+    [JsonPropertyName("stream")] public bool Stream { get; set; } = false;
+    [JsonPropertyName("tools")] public List<OllamaTool>? Tools { get; set; }
+}
+</file>
+
+<file path="src/AiRagProxy.Domain/Dtos/Ollama/OllamaChatCompletionResponse.cs">
+using System.Text.Json.Serialization;
+
+namespace AiRagProxy.Domain.Dtos.Ollama;
+
+public class OllamaChatCompletionResponse
+{
+    [JsonPropertyName("model")] public required string Model { get; set; }
+    [JsonPropertyName("created_at")] public required DateTime CreatedAt { get; set; }
+    [JsonPropertyName("message")] public OllamaChatMessage? Message { get; set; }
+    [JsonPropertyName("done")] public bool Done { get; set; } = false;
+    [JsonPropertyName("total_duration")] public int TotalDuration { get; set; } = 0;
+    [JsonPropertyName("load_duration")] public int LoadDuration { get; set; } = 0;
+
+    [JsonPropertyName("prompt_eval_count")]
+    public int PromptEvalCount { get; set; } = 0;
+
+    [JsonPropertyName("prompt_eval_duration")]
+    public int PromptEvalDuration { get; set; } = 0;
+
+    [JsonPropertyName("eval_count")] public int EvalCount { get; set; } = 0;
+    [JsonPropertyName("eval_duration")] public int EvalDuration { get; set; } = 0;
+}
+</file>
+
+<file path="src/AiRagProxy.Domain/Dtos/Ollama/OllamaChatMessage.cs">
+using System.Text.Json.Serialization;
+
+namespace AiRagProxy.Domain.Dtos.Ollama;
+
+public class OllamaChatMessage
+{
+    [JsonPropertyName("role")] public required string Role { get; set; }
+
+    [JsonPropertyName("content")] public required string Content { get; set; }
+}
+</file>
+
+<file path="src/AiRagProxy.Domain/Dtos/Ollama/OllamaFunction.cs">
+using System.Text.Json.Serialization;
+
+namespace AiRagProxy.Domain.Dtos.Ollama;
+
+public class OllamaFunction
+{
+    [JsonPropertyName("name")] public required string Name { get; set; }
+    [JsonPropertyName("description")] public string? Description { get; set; }
+    [JsonPropertyName("parameters")] public OllamaFunctionParameters? Parameters { get; set; }
+}
+</file>
+
+<file path="src/AiRagProxy.Domain/Dtos/Ollama/OllamaFunctionParameters.cs">
+using System.Text.Json.Serialization;
+
+namespace AiRagProxy.Domain.Dtos.Ollama;
+
+public class OllamaFunctionParameters
+{
+    [JsonPropertyName("type")] public required string Type { get; set; }
+    [JsonPropertyName("properties")] public Dictionary<string, OllamaPropertyDefinition>? Properties { get; set; }
+    [JsonPropertyName("required")] public List<string>? Required { get; set; }
+}
+</file>
+
+<file path="src/AiRagProxy.Domain/Dtos/Ollama/OllamaPropertyDefinition.cs">
+using System.Text.Json.Serialization;
+
+namespace AiRagProxy.Domain.Dtos.Ollama;
+
+public class OllamaPropertyDefinition
+{
+    [JsonPropertyName("type")] public required string Type { get; set; }
+    [JsonPropertyName("description")] public string? Description { get; set; }
+}
+</file>
+
+<file path="src/AiRagProxy.Domain/Dtos/Ollama/OllamaTool.cs">
+using System.Text.Json.Serialization;
+
+namespace AiRagProxy.Domain.Dtos.Ollama;
+
+public class OllamaTool
+{
+    [JsonPropertyName("type")] public required string Type { get; set; }
+    [JsonPropertyName("function")] public OllamaFunction? Function { get; set; }
+}
+</file>
+
+<file path="src/AiRagProxy.Domain/Dtos/OpenAi/ChatCompletionChunk.cs">
+using System.Text.Json.Serialization;
+
+namespace AiRagProxy.Domain.Dtos.OpenAi;
+
+public class ChatCompletionChunk
+{
+    [JsonPropertyName("id")] public string Id { get; set; }
+    [JsonPropertyName("object")] public string Object { get; set; } = "chat.completion.chunk";
+    [JsonPropertyName("created")] public long Created { get; set; }
+    [JsonPropertyName("model")] public string Model { get; set; }
+    [JsonPropertyName("choices")] public List<Choice> Choices { get; set; }
+
+    public class Choice
+    {
+        [JsonPropertyName("index")] public int Index { get; set; }
+        [JsonPropertyName("delta")] public Message Delta { get; set; }
+        [JsonPropertyName("finish_reason")] public string? FinishReason { get; set; } = null;
+    }
+
+    public class Message
+    {
+        [JsonPropertyName("content")] public string Content { get; set; } = string.Empty;
+    }
+}
+</file>
+
+<file path="src/AiRagProxy.Domain/Dtos/OpenAi/Model.cs">
+using System.Text.Json.Serialization;
+
+namespace AiRagProxy.Domain.Dtos.OpenAi;
+
+public class Model
+{
+    [JsonPropertyName("id")] public required string Id { get; set; }
+    [JsonPropertyName("object")] public required string Object { get; set; }
+    [JsonPropertyName("created")]  public long Created { get; set; }
+    [JsonPropertyName("owned_by")] public string? OwnedBy { get; set; }
+}
+</file>
+
+<file path="src/AiRagProxy.Domain/Dtos/OpenAi/ModelsResponse.cs">
+using System.Text.Json.Serialization;
+
+namespace AiRagProxy.Domain.Dtos.OpenAi;
+
+public class ModelsResponse
+{
+    [JsonPropertyName("object")] public string Object { get; set; } = "list";
+    [JsonPropertyName("data")] public List<Model> Data { get; set; } = [];
+}
+</file>
+
+<file path="src/AiRagProxy.Domain/Dtos/OpenAi/OpenAiChatCompletionRequest.cs">
+using System.Text.Json.Serialization;
+
+namespace AiRagProxy.Domain.Dtos.OpenAi;
+
+public class OpenAiChatCompletionRequest
+{
+    [JsonPropertyName("model")] public string Model { get; set; } = string.Empty;
+    [JsonPropertyName("messages")] public List<OpenAiChatMessage> Messages { get; set; } = new();
+    [JsonPropertyName("stream")] public bool Stream { get; set; }
+    // [JsonPropertyName("max_tokens")] public int? MaxTokens { get; set; }
+    [JsonPropertyName("temperature")] public double Temperature { get; set; } = 1.0;
+}
+</file>
+
+<file path="src/AiRagProxy.Domain/Dtos/OpenAi/OpenAiChatCompletionResponse.cs">
+using System.Text.Json.Serialization;
+
+namespace AiRagProxy.Domain.Dtos.OpenAi;
+
+public class OpenAiChatCompletionResponse
+{
+    [JsonPropertyName("id")] public string Id { get; set; } = string.Empty;
+
+    [JsonPropertyName("object")] public string Object { get; set; } = string.Empty;
+
+    [JsonPropertyName("created")] public long Created { get; set; }
+
+    [JsonPropertyName("model")] public string Model { get; set; } = string.Empty;
+
+    [JsonPropertyName("choices")] public List<Choice> Choices { get; set; } = new();
+
+    [JsonPropertyName("usage")] public OpenAiUsage Usage { get; set; } = new();
+
+    [JsonPropertyName("service_tier")] public string ServiceTier { get; set; } = string.Empty;
+
+    public class Choice
+    {
+        [JsonPropertyName("index")] public int Index { get; set; }
+
+        [JsonPropertyName("message")] public Message Message { get; set; } = new();
+
+        [JsonPropertyName("logprobs")] public object? LogProbs { get; set; }
+
+        [JsonPropertyName("finish_reason")] public string FinishReason { get; set; } = string.Empty;
+    }
+
+    public class Message
+    {
+        [JsonPropertyName("role")] public string Role { get; set; } = string.Empty;
+
+        [JsonPropertyName("content")] public string Content { get; set; } = string.Empty;
+
+        [JsonPropertyName("refusal")] public string? Refusal { get; set; }
+
+        [JsonPropertyName("annotations")] public List<object> Annotations { get; set; } = new();
+    }
+
+    public class OpenAiUsage
+    {
+        [JsonPropertyName("prompt_tokens")] public int PromptTokens { get; set; }
+
+        [JsonPropertyName("completion_tokens")]
+        public int CompletionTokens { get; set; }
+
+        [JsonPropertyName("total_tokens")] public int TotalTokens { get; set; }
+
+        [JsonPropertyName("prompt_tokens_details")]
+        public PromptTokensDetails PromptTokensDetails { get; set; } = new();
+
+        [JsonPropertyName("completion_tokens_details")]
+        public CompletionTokensDetails CompletionTokensDetails { get; set; } = new();
+    }
+
+    public class PromptTokensDetails
+    {
+        [JsonPropertyName("cached_tokens")] public int CachedTokens { get; set; }
+
+        [JsonPropertyName("audio_tokens")] public int AudioTokens { get; set; }
+    }
+
+    public class CompletionTokensDetails
+    {
+        [JsonPropertyName("reasoning_tokens")] public int ReasoningTokens { get; set; }
+
+        [JsonPropertyName("audio_tokens")] public int AudioTokens { get; set; }
+
+        [JsonPropertyName("accepted_prediction_tokens")]
+        public int AcceptedPredictionTokens { get; set; }
+
+        [JsonPropertyName("rejected_prediction_tokens")]
+        public int RejectedPredictionTokens { get; set; }
+    }
+}
+</file>
+
+<file path="src/AiRagProxy.Domain/Dtos/OpenAi/OpenAiChatMessage.cs">
+namespace AiRagProxy.Domain.Dtos.OpenAi;
+
+public class OpenAiChatMessage
+{
+    public string Role { get; set; } = string.Empty;
+    public string Content { get; set; } = string.Empty;
+}
+</file>
+
+<file path="src/AiRagProxy.Domain/Dtos/PersonalAccessToken/CreateTokenRequest.cs">
+using System.ComponentModel.DataAnnotations;
+
+namespace AiRagProxy.Domain.Dtos.PersonalAccessToken;
+
+public class CreateTokenRequest
+{
+    [Required] public required string Name { get; set; }
+    public int? ExpireDays { get; set; }
+}
+</file>
+
+<file path="src/AiRagProxy.Domain/Dtos/PersonalAccessToken/CreateTokenResponse.cs">
+namespace AiRagProxy.Domain.Dtos.PersonalAccessToken;
+
+public class CreateTokenResponse
+{
+    public Guid Id { get; set; }
+    public required string Name { get; set; }
+    public required string PlaintextToken { get; set; }
+    public DateTime CreatedAt { get; set; }
+    public DateTime? ExpiresAt { get; set; }	
+}
+</file>
+
+<file path="src/AiRagProxy.Domain/Dtos/PersonalAccessToken/TokenResponse.cs">
+namespace AiRagProxy.Domain.Dtos.PersonalAccessToken;
+
+public class TokenResponse
+{
+    public Guid Id { get; set; }
+    public required string Name { get; set; }
+    public DateTime CreatedAt { get; set; }
+    public DateTime? ExpiresAt { get; set; }
+}
+</file>
+
+<file path="src/AiRagProxy.Domain/Dtos/PersonalAccessToken/ValidatedToken.cs">
+namespace AiRagProxy.Domain.Dtos.PersonalAccessToken;
+
+public class ValidatedToken
+{
+    public required Guid TokenId { get; init; }
+    public Guid UserId { get; init; }
+    public string? TeamId { get; init; }
+    public string[] Scopes { get; init; } = [];
+    public DateTime? ExpiresAt { get; init; }
+
+    public required string ExternalId { get; set; }
+    public required string Email { get; set; }
+    public string? DisplayName { get; set; }
+}
+</file>
+
+<file path="src/AiRagProxy.Storage/AiRagProxy.Storage.csproj">
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net9.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <PackageReference Include="Microsoft.EntityFrameworkCore" Version="9.0.7" />
+      <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="9.0.4" />
+    </ItemGroup>
+
+</Project>
+</file>
+
+<file path="src/AiRagProxy.Storage/Configuration/ConfigureServices.cs">
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
+
+namespace AiRagProxy.Storage.Configuration;
+
+public static class ConfigureServices
+{
+    public static IServiceCollection AddStorageServices(this IServiceCollection services, IConfiguration configuration)
+    {
+        services.AddDbContext<Context.AiRagProxyContext>(options =>
+            options.UseNpgsql(configuration.GetConnectionString("DefaultConnection")));
+
+        services.AddScoped<Context.IAiRagProxyContext, Context.AiRagProxyContext>();
+        services.AddScoped<Services.Interfaces.IAiRagProxyStorageService, Services.AiRagProxyStorageService>();
+
+        return services;
+    }
+}
+</file>
+
+<file path="src/AiRagProxy.Storage/Context/AiRagProxyContext.cs">
+using AiRagProxy.Storage.Entities;
+using Microsoft.EntityFrameworkCore;
+
+namespace AiRagProxy.Storage.Context;
+
+public class AiRagProxyContext(DbContextOptions<AiRagProxyContext> options) : DbContext(options), IAiRagProxyContext
+{
+    public DbSet<AppUser> AppUsers { get; set; }
+    public DbSet<PersonalAccessToken> PersonalAccessTokens { get; set; }
+
+    public override async Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
+    {
+        return await base.SaveChangesAsync(cancellationToken);
+    }
+}
+</file>
+
+<file path="src/AiRagProxy.Storage/Context/IAiRagProxyContext.cs">
+using AiRagProxy.Storage.Entities;
+using Microsoft.EntityFrameworkCore;
+
+namespace AiRagProxy.Storage.Context;
+
+public interface IAiRagProxyContext
+{
+    DbSet<AppUser> AppUsers { get; set; }
+    DbSet<PersonalAccessToken> PersonalAccessTokens { get; set; }
+    
+    Task<int> SaveChangesAsync(CancellationToken cancellationToken = default);
+}
+</file>
+
+<file path="src/AiRagProxy.Storage/Entities/AppUser.cs">
+using System.ComponentModel.DataAnnotations;
+
+namespace AiRagProxy.Storage.Entities;
+
+public class AppUser
+{
+    public Guid Id { get; set; }
+    [StringLength(128)] public string ExternalId { get; set; } = string.Empty;
+    [StringLength(128)] public string Provider { get; set; } = string.Empty;
+    [StringLength(256)] public string Email { get; set; } = string.Empty;
+    [StringLength(128)] public string? DisplayName { get; set; }
+    public DateTime? LastSeen { get; set; }
+
+    public List<PersonalAccessToken> Tokens { get; set; } = [];
+}
+</file>
+
+<file path="src/AiRagProxy.Storage/Entities/PersonalAccessToken.cs">
+using System.ComponentModel.DataAnnotations;
+
+namespace AiRagProxy.Storage.Entities;
+
+public class PersonalAccessToken
+{
+    public Guid Id { get; set; }
+    [StringLength(128)] public required string TokenHash { get; set; }
+    [StringLength(128)] public required string Name { get; set; }
+    public DateTime CreatedAt { get; set; }
+    public DateTime? ExpiresAt { get; set; }
+    public Guid UserId { get; set; }
+    public virtual AppUser? User { get; set; }
+}
+</file>
+
+<file path="src/AiRagProxy.Storage/Migrations/20250717193652_AddAuth.cs">
+using System;
+using Microsoft.EntityFrameworkCore.Migrations;
+
+#nullable disable
+
+namespace AiRagProxy.Storage.Migrations
+{
+    /// <inheritdoc />
+    public partial class AddAuth : Migration
+    {
+        /// <inheritdoc />
+        protected override void Up(MigrationBuilder migrationBuilder)
+        {
+            migrationBuilder.CreateTable(
+                name: "AppUsers",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uuid", nullable: false),
+                    ExternalId = table.Column<string>(type: "text", nullable: false),
+                    Email = table.Column<string>(type: "text", nullable: false),
+                    DisplayName = table.Column<string>(type: "text", nullable: true),
+                    LastSeen = table.Column<DateTime>(type: "timestamp with time zone", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_AppUsers", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "PersonalAccessTokens",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uuid", nullable: false),
+                    TokenHash = table.Column<string>(type: "text", nullable: false),
+                    Name = table.Column<string>(type: "text", nullable: false),
+                    CreatedAt = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
+                    ExpiresAt = table.Column<DateTime>(type: "timestamp with time zone", nullable: true),
+                    AppUserId = table.Column<Guid>(type: "uuid", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_PersonalAccessTokens", x => x.Id);
+                });
+        }
+
+        /// <inheritdoc />
+        protected override void Down(MigrationBuilder migrationBuilder)
+        {
+            migrationBuilder.DropTable(
+                name: "AppUsers");
+
+            migrationBuilder.DropTable(
+                name: "PersonalAccessTokens");
+        }
+    }
+}
+</file>
+
+<file path="src/AiRagProxy.Storage/Migrations/20250717193652_AddAuth.Designer.cs">
+// <auto-generated />
+using System;
+using AiRagProxy.Storage.Context;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
+using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
+using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
+
+#nullable disable
+
+namespace AiRagProxy.Storage.Migrations
+{
+    [DbContext(typeof(AiRagProxyContext))]
+    [Migration("20250717193652_AddAuth")]
+    partial class AddAuth
+    {
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
+        {
+#pragma warning disable 612, 618
+            modelBuilder
+                .HasAnnotation("ProductVersion", "9.0.7")
+                .HasAnnotation("Relational:MaxIdentifierLength", 63);
+
+            NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
+
+            modelBuilder.Entity("AiRagProxy.Storage.Entities.AppUser", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid");
+
+                    b.Property<string>("DisplayName")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("ExternalId")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<DateTime>("LastSeen")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("AppUsers");
+                });
+
+            modelBuilder.Entity("AiRagProxy.Storage.Entities.PersonalAccessToken", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid");
+
+                    b.Property<Guid>("AppUserId")
+                        .HasColumnType("uuid");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<DateTime?>("ExpiresAt")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("TokenHash")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("PersonalAccessTokens");
+                });
+#pragma warning restore 612, 618
+        }
+    }
+}
+</file>
+
+<file path="src/AiRagProxy.Storage/Migrations/20250723104542_AddPAT.cs">
+using System;
+using Microsoft.EntityFrameworkCore.Migrations;
+
+#nullable disable
+
+namespace AiRagProxy.Storage.Migrations
+{
+    /// <inheritdoc />
+    public partial class AddPAT : Migration
+    {
+        /// <inheritdoc />
+        protected override void Up(MigrationBuilder migrationBuilder)
+        {
+            migrationBuilder.RenameColumn(
+                name: "AppUserId",
+                table: "PersonalAccessTokens",
+                newName: "UserId");
+
+            migrationBuilder.AlterColumn<string>(
+                name: "TokenHash",
+                table: "PersonalAccessTokens",
+                type: "character varying(128)",
+                maxLength: 128,
+                nullable: false,
+                oldClrType: typeof(string),
+                oldType: "text");
+
+            migrationBuilder.AlterColumn<string>(
+                name: "Name",
+                table: "PersonalAccessTokens",
+                type: "character varying(128)",
+                maxLength: 128,
+                nullable: false,
+                oldClrType: typeof(string),
+                oldType: "text");
+
+            migrationBuilder.AlterColumn<DateTime>(
+                name: "LastSeen",
+                table: "AppUsers",
+                type: "timestamp with time zone",
+                nullable: true,
+                oldClrType: typeof(DateTime),
+                oldType: "timestamp with time zone");
+
+            migrationBuilder.AlterColumn<string>(
+                name: "ExternalId",
+                table: "AppUsers",
+                type: "character varying(128)",
+                maxLength: 128,
+                nullable: false,
+                oldClrType: typeof(string),
+                oldType: "text");
+
+            migrationBuilder.AlterColumn<string>(
+                name: "Email",
+                table: "AppUsers",
+                type: "character varying(256)",
+                maxLength: 256,
+                nullable: false,
+                oldClrType: typeof(string),
+                oldType: "text");
+
+            migrationBuilder.AlterColumn<string>(
+                name: "DisplayName",
+                table: "AppUsers",
+                type: "character varying(128)",
+                maxLength: 128,
+                nullable: true,
+                oldClrType: typeof(string),
+                oldType: "text",
+                oldNullable: true);
+
+            migrationBuilder.AddColumn<string>(
+                name: "Provider",
+                table: "AppUsers",
+                type: "character varying(128)",
+                maxLength: 128,
+                nullable: false,
+                defaultValue: "");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_PersonalAccessTokens_UserId",
+                table: "PersonalAccessTokens",
+                column: "UserId");
+
+            migrationBuilder.AddForeignKey(
+                name: "FK_PersonalAccessTokens_AppUsers_UserId",
+                table: "PersonalAccessTokens",
+                column: "UserId",
+                principalTable: "AppUsers",
+                principalColumn: "Id",
+                onDelete: ReferentialAction.Cascade);
+        }
+
+        /// <inheritdoc />
+        protected override void Down(MigrationBuilder migrationBuilder)
+        {
+            migrationBuilder.DropForeignKey(
+                name: "FK_PersonalAccessTokens_AppUsers_UserId",
+                table: "PersonalAccessTokens");
+
+            migrationBuilder.DropIndex(
+                name: "IX_PersonalAccessTokens_UserId",
+                table: "PersonalAccessTokens");
+
+            migrationBuilder.DropColumn(
+                name: "Provider",
+                table: "AppUsers");
+
+            migrationBuilder.RenameColumn(
+                name: "UserId",
+                table: "PersonalAccessTokens",
+                newName: "AppUserId");
+
+            migrationBuilder.AlterColumn<string>(
+                name: "TokenHash",
+                table: "PersonalAccessTokens",
+                type: "text",
+                nullable: false,
+                oldClrType: typeof(string),
+                oldType: "character varying(128)",
+                oldMaxLength: 128);
+
+            migrationBuilder.AlterColumn<string>(
+                name: "Name",
+                table: "PersonalAccessTokens",
+                type: "text",
+                nullable: false,
+                oldClrType: typeof(string),
+                oldType: "character varying(128)",
+                oldMaxLength: 128);
+
+            migrationBuilder.AlterColumn<DateTime>(
+                name: "LastSeen",
+                table: "AppUsers",
+                type: "timestamp with time zone",
+                nullable: false,
+                defaultValue: new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                oldClrType: typeof(DateTime),
+                oldType: "timestamp with time zone",
+                oldNullable: true);
+
+            migrationBuilder.AlterColumn<string>(
+                name: "ExternalId",
+                table: "AppUsers",
+                type: "text",
+                nullable: false,
+                oldClrType: typeof(string),
+                oldType: "character varying(128)",
+                oldMaxLength: 128);
+
+            migrationBuilder.AlterColumn<string>(
+                name: "Email",
+                table: "AppUsers",
+                type: "text",
+                nullable: false,
+                oldClrType: typeof(string),
+                oldType: "character varying(256)",
+                oldMaxLength: 256);
+
+            migrationBuilder.AlterColumn<string>(
+                name: "DisplayName",
+                table: "AppUsers",
+                type: "text",
+                nullable: true,
+                oldClrType: typeof(string),
+                oldType: "character varying(128)",
+                oldMaxLength: 128,
+                oldNullable: true);
+        }
+    }
+}
+</file>
+
+<file path="src/AiRagProxy.Storage/Migrations/20250723104542_AddPAT.Designer.cs">
+// <auto-generated />
+using System;
+using AiRagProxy.Storage.Context;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
+using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
+using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
+
+#nullable disable
+
+namespace AiRagProxy.Storage.Migrations
+{
+    [DbContext(typeof(AiRagProxyContext))]
+    [Migration("20250723104542_AddPAT")]
+    partial class AddPAT
+    {
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
+        {
+#pragma warning disable 612, 618
+            modelBuilder
+                .HasAnnotation("ProductVersion", "9.0.7")
+                .HasAnnotation("Relational:MaxIdentifierLength", 63);
+
+            NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
+
+            modelBuilder.Entity("AiRagProxy.Storage.Entities.AppUser", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid");
+
+                    b.Property<string>("DisplayName")
+                        .HasMaxLength(128)
+                        .HasColumnType("character varying(128)");
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasMaxLength(256)
+                        .HasColumnType("character varying(256)");
+
+                    b.Property<string>("ExternalId")
+                        .IsRequired()
+                        .HasMaxLength(128)
+                        .HasColumnType("character varying(128)");
+
+                    b.Property<DateTime?>("LastSeen")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("Provider")
+                        .IsRequired()
+                        .HasMaxLength(128)
+                        .HasColumnType("character varying(128)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("AppUsers");
+                });
+
+            modelBuilder.Entity("AiRagProxy.Storage.Entities.PersonalAccessToken", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<DateTime?>("ExpiresAt")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(128)
+                        .HasColumnType("character varying(128)");
+
+                    b.Property<string>("TokenHash")
+                        .IsRequired()
+                        .HasMaxLength(128)
+                        .HasColumnType("character varying(128)");
+
+                    b.Property<Guid>("UserId")
+                        .HasColumnType("uuid");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("PersonalAccessTokens");
+                });
+
+            modelBuilder.Entity("AiRagProxy.Storage.Entities.PersonalAccessToken", b =>
+                {
+                    b.HasOne("AiRagProxy.Storage.Entities.AppUser", "User")
+                        .WithMany("Tokens")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("AiRagProxy.Storage.Entities.AppUser", b =>
+                {
+                    b.Navigation("Tokens");
+                });
+#pragma warning restore 612, 618
+        }
+    }
+}
+</file>
+
+<file path="src/AiRagProxy.Storage/Migrations/AiRagProxyContextModelSnapshot.cs">
+// <auto-generated />
+using System;
+using AiRagProxy.Storage.Context;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
+using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
+
+#nullable disable
+
+namespace AiRagProxy.Storage.Migrations
+{
+    [DbContext(typeof(AiRagProxyContext))]
+    partial class AiRagProxyContextModelSnapshot : ModelSnapshot
+    {
+        protected override void BuildModel(ModelBuilder modelBuilder)
+        {
+#pragma warning disable 612, 618
+            modelBuilder
+                .HasAnnotation("ProductVersion", "9.0.7")
+                .HasAnnotation("Relational:MaxIdentifierLength", 63);
+
+            NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
+
+            modelBuilder.Entity("AiRagProxy.Storage.Entities.AppUser", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid");
+
+                    b.Property<string>("DisplayName")
+                        .HasMaxLength(128)
+                        .HasColumnType("character varying(128)");
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasMaxLength(256)
+                        .HasColumnType("character varying(256)");
+
+                    b.Property<string>("ExternalId")
+                        .IsRequired()
+                        .HasMaxLength(128)
+                        .HasColumnType("character varying(128)");
+
+                    b.Property<DateTime?>("LastSeen")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("Provider")
+                        .IsRequired()
+                        .HasMaxLength(128)
+                        .HasColumnType("character varying(128)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("AppUsers");
+                });
+
+            modelBuilder.Entity("AiRagProxy.Storage.Entities.PersonalAccessToken", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<DateTime?>("ExpiresAt")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(128)
+                        .HasColumnType("character varying(128)");
+
+                    b.Property<string>("TokenHash")
+                        .IsRequired()
+                        .HasMaxLength(128)
+                        .HasColumnType("character varying(128)");
+
+                    b.Property<Guid>("UserId")
+                        .HasColumnType("uuid");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("PersonalAccessTokens");
+                });
+
+            modelBuilder.Entity("AiRagProxy.Storage.Entities.PersonalAccessToken", b =>
+                {
+                    b.HasOne("AiRagProxy.Storage.Entities.AppUser", "User")
+                        .WithMany("Tokens")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("AiRagProxy.Storage.Entities.AppUser", b =>
+                {
+                    b.Navigation("Tokens");
+                });
+#pragma warning restore 612, 618
+        }
+    }
+}
+</file>
+
+<file path="src/AiRagProxy.Storage/Services/AiRagProxyStorageService.cs">
+using AiRagProxy.Storage.Context;
+using AiRagProxy.Storage.Entities;
+using AiRagProxy.Storage.Services.Interfaces;
+using Microsoft.EntityFrameworkCore;
+
+namespace AiRagProxy.Storage.Services;
+
+public class AiRagProxyStorageService(IAiRagProxyContext context) : IAiRagProxyStorageService
+{
+    public async Task MigrateDatabase()
+    {
+        try
+        {
+            await ((DbContext)context).Database.MigrateAsync();
+        }
+        catch (Exception ex)
+        {
+            // Log the exception (logging not implemented in this example)
+            Console.WriteLine($"Database migration failed: {ex.Message}");
+            throw;
+        }
+    }
+
+    #region User Management
+
+    public async Task<bool> UserExists(string externalId, string issuer)
+    {
+        return await context.AppUsers.AnyAsync(u => u.ExternalId == externalId && u.Provider == issuer);
+    }
+
+    public async Task AddUser(string sub, string issuer, string email, string? name)
+    {
+        if (string.IsNullOrEmpty(sub))
+        {
+            throw new ArgumentException("Subject (sub) cannot be null or empty.", nameof(sub));
+        }
+
+        var user = new AppUser
+        {
+            ExternalId = sub,
+            Email = email,
+            DisplayName = name,
+            LastSeen = DateTime.UtcNow,
+            Provider = issuer
+        };
+
+        await context.AppUsers.AddAsync(user);
+        await context.SaveChangesAsync();
+    }
+
+    public async Task UpdateUser(string sub, string issuer, string email, string? name)
+    {
+        var user = context.AppUsers.FirstOrDefault(u => u.ExternalId == sub && u.Provider == issuer);
+        if (user == null)
+        {
+            throw new KeyNotFoundException($"User with external ID '{sub}' not found.");
+        }
+
+        user.Email = email;
+        user.DisplayName = name;
+        user.LastSeen = DateTime.UtcNow;
+        await context.SaveChangesAsync();
+    }
+
+    public async Task<Guid?> GetUserIdBySubject(string sub, string issuer)
+    {
+        var user = await context.AppUsers
+            .AsNoTracking()
+            .FirstOrDefaultAsync(u => u.ExternalId == sub && u.Provider == issuer);
+
+        return user?.Id;
+    }
+
+    #region Personal Access Tokens
+
+    public async Task<PersonalAccessToken> SavePersonalAccessToken(string hash, string name, DateTime? expiresAt,
+        Guid userId)
+    {
+        var token = new PersonalAccessToken
+        {
+            Id = Guid.NewGuid(),
+            TokenHash = hash,
+            Name = name,
+            CreatedAt = DateTime.UtcNow,
+            ExpiresAt = expiresAt,
+            UserId = userId
+        };
+
+        await context.PersonalAccessTokens.AddAsync(token);
+        await context.SaveChangesAsync();
+
+        return token;
+    }
+
+    public async Task<List<PersonalAccessToken>> GetPersonalAccessTokens(Guid userId)
+    {
+        return await context.PersonalAccessTokens
+            .Where(x => x.UserId == userId)
+            .ToListAsync();
+    }
+
+    public async Task<PersonalAccessToken?> GetPersonalAccessToken(string tokenHash)
+    {
+        return await context.PersonalAccessTokens
+            .Include(x => x.User)
+            .FirstOrDefaultAsync(x => x.TokenHash == tokenHash
+                                      && (x.ExpiresAt == null || x.ExpiresAt > DateTime.UtcNow));
+    }
+
+    #endregion Personal Access Tokens
+
+    #endregion User Management
+}
+</file>
+
+<file path="src/AiRagProxy.Storage/Services/Interfaces/IAiRagProxyStorageService.cs">
+using AiRagProxy.Storage.Entities;
+
+namespace AiRagProxy.Storage.Services.Interfaces;
+
+public interface IAiRagProxyStorageService
+{
+    Task MigrateDatabase();
+
+    #region User Management
+    
+    Task<bool> UserExists(string externalId, string issuer);
+    Task AddUser(string sub, string issuer, string email, string? name);
+    Task UpdateUser(string sub, string issuer, string email, string? name);
+    Task<Guid?> GetUserIdBySubject(string sub, string issuer);
+    
+    #region Personal Access Tokens
+    
+    Task<PersonalAccessToken> SavePersonalAccessToken(string hash, string name, DateTime? expiresAt, Guid userId);
+    Task<List<PersonalAccessToken>> GetPersonalAccessTokens(Guid userId);
+    Task<PersonalAccessToken?> GetPersonalAccessToken(string tokenHash);
+    
+    #endregion Personal Access Tokens
+    
+    #endregion User Management
+
+    
+}
+</file>
+
+<file path="tests/AiRagProxy.Api.Tests/AiRagProxy.Api.Tests.csproj">
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net9.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+        <IsPackable>false</IsPackable>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="coverlet.collector" Version="6.0.2" />
+        <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.12.0" />
+        <PackageReference Include="Moq" Version="4.20.72" />
+        <PackageReference Include="xunit" Version="2.9.2" />
+        <PackageReference Include="xunit.runner.visualstudio" Version="2.8.2" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <Using Include="Xunit" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\..\src\AiRagProxy.Api\AiRagProxy.Api.csproj" />
+    </ItemGroup>
+
+</Project>
+</file>
+
+<file path="tests/AiRagProxy.Api.Tests/Middlewares/ErrorHandlingMiddlewareTests.cs">
+using System.Net;
+using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.Logging;
+using Moq;
+using AiRagProxy.Api.Middlewares;
+
+namespace AiRagProxy.Api.Tests.Middlewares
+{
+    public class ErrorHandlingMiddlewareTests
+    {
+        [Fact]
+        public async Task Invoke_NoException_CallsNext()
+        {
+            // Arrange
+            var loggerMock = new Mock<ILogger<ErrorHandlingMiddleware>>();
+            var context = new DefaultHttpContext();
+            var wasCalled = false;
+            RequestDelegate next = ctx => { wasCalled = true; return Task.CompletedTask; };
+            var middleware = new ErrorHandlingMiddleware(next, loggerMock.Object);
+
+            // Act
+            await middleware.Invoke(context);
+
+            // Assert
+            Assert.True(wasCalled);
+            Assert.NotEqual("application/problem+json", context.Response.ContentType);
+        }
+
+        [Fact]
+        public async Task Invoke_ExceptionThrown_LogsErrorAndSetsProblemJson()
+        {
+            // Arrange
+            var loggerMock = new Mock<ILogger<ErrorHandlingMiddleware>>();
+            var context = new DefaultHttpContext();
+            RequestDelegate next = ctx => throw new InvalidOperationException("Test error");
+            var middleware = new ErrorHandlingMiddleware(next, loggerMock.Object);
+
+            // Act
+            await middleware.Invoke(context);
+
+            // Assert
+            loggerMock.Verify(
+                x => x.Log(
+                    LogLevel.Error,
+                    It.IsAny<EventId>(),
+                    It.Is<It.IsAnyType>((v, t) => v.ToString()!.Contains("An unhandled exception occurred")),
+                    It.IsAny<Exception>(),
+                    It.IsAny<Func<It.IsAnyType, Exception, string>>()!),
+                Times.Once);
+            Assert.Equal("application/problem+json", context.Response.ContentType);
+            Assert.Equal((int)HttpStatusCode.InternalServerError, context.Response.StatusCode);
+        }
+    }
+}
+</file>
+
+</files>

@@ -5,10 +5,10 @@ using AiRagProxy.Domain.Dtos.OpenAi;
 
 namespace AiRagProxy.Api.Services;
 
-public class OpenAiChatCompletionService(
+public class OpenAiCommunicationService(
     HttpClient httpClient,
-    ILogger<OpenAiChatCompletionService> logger)
-    : IOpenAiChatCompletionService
+    ILogger<OpenAiCommunicationService> logger)
+    : IOpenAiCommunicationService
 {
     public async Task<OpenAiChatCompletionResponse> CreateChatCompletion(OpenAiChatCompletionRequest request)
     {
@@ -79,7 +79,7 @@ public class OpenAiChatCompletionService(
 
             if (line == "data: [DONE]")
             {
-                break;
+                yield break;
             }
 
             if (line.StartsWith("data: "))
@@ -94,5 +94,21 @@ public class OpenAiChatCompletionService(
                 }
             }
         }
+    }
+
+    public async Task<ModelsResponse?> GetModels(CancellationToken cancellationToken = default)
+    {
+        var response = await httpClient.GetAsync("/v1/models", cancellationToken);
+
+        if (!response.IsSuccessStatusCode)
+        {
+            var error = await response.Content.ReadAsStringAsync(cancellationToken);
+            logger.LogError("An error occured: {Error}", error);
+        }
+		
+        var json = await response.Content.ReadAsStringAsync(cancellationToken);
+        var result = JsonSerializer.Deserialize<ModelsResponse>(json);
+
+        return result;
     }
 }
