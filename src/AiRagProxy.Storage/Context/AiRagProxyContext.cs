@@ -7,6 +7,7 @@ public class AiRagProxyContext(DbContextOptions<AiRagProxyContext> options) : Db
 {
     public DbSet<AppUser> AppUsers { get; set; }
     public DbSet<PersonalAccessToken> PersonalAccessTokens { get; set; }
+    public DbSet<ProviderConnection> ProviderConnections { get; set; }
 
     public override async Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
     {

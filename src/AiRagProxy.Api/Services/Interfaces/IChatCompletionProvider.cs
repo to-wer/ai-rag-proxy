@@ -2,7 +2,7 @@ using AiRagProxy.Domain.Dtos.OpenAi;
 
 namespace AiRagProxy.Api.Services.Interfaces;
 
-public interface IOpenAiCommunicationService
+public interface IChatCompletionProvider
 {
     Task<OpenAiChatCompletionResponse> CreateChatCompletion(OpenAiChatCompletionRequest request);
 

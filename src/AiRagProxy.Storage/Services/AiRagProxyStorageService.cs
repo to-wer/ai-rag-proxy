@@ -1,3 +1,4 @@
+using AiRagProxy.Domain.Enums;
 using AiRagProxy.Storage.Context;
 using AiRagProxy.Storage.Entities;
 using AiRagProxy.Storage.Services.Interfaces;
@@ -110,4 +111,40 @@ public class AiRagProxyStorageService(IAiRagProxyContext context) : IAiRagProxyS
     #endregion Personal Access Tokens
 
     #endregion User Management
+
+    #region Provider Connections
+
+    public async Task<List<ProviderConnection>> GetProviderConnections(Guid userId, bool isAdmin = false)
+    {
+        return await context.ProviderConnections
+            .Where(x => x.UserId == userId || x.Public || isAdmin)
+            .ToListAsync();
+    }
+
+    public async Task<ProviderConnection?> GetProviderConnection(Guid userId, string name)
+    {
+        return await context.ProviderConnections
+            .Where(x => x.UserId == userId || x.Public)
+            .SingleOrDefaultAsync();
+    }
+
+    public async Task SaveProviderConnection(Guid userId, string name, ProviderType providerType, string apiUrl,
+        string? encryptedApiKey, bool isPublic)
+    {
+        var providerConnection = new ProviderConnection
+        {
+            Id = Guid.NewGuid(),
+            Name = name,
+            Type = providerType,
+            ApiUrl = apiUrl,
+            ApiKeyHash = encryptedApiKey,
+            Public = isPublic,
+            UserId = userId
+        };
+
+        await context.ProviderConnections.AddAsync(providerConnection);
+        await context.SaveChangesAsync();
+    }
+
+    #endregion Provider Connections
 }

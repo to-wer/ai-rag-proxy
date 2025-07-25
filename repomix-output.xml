@@ -79,13 +79,18 @@ src/AiRagProxy.Api/Middlewares/ErrorHandlingMiddleware.cs
 src/AiRagProxy.Api/Middlewares/PatAuthenticationHandler.cs
 src/AiRagProxy.Api/Program.cs
 src/AiRagProxy.Api/Properties/launchSettings.json
-src/AiRagProxy.Api/Services/Interfaces/IOpenAiCommunicationService.cs
+src/AiRagProxy.Api/Services/ChatCompletionProviderFactory.cs
+src/AiRagProxy.Api/Services/Interfaces/IChatCompletionProvider.cs
+src/AiRagProxy.Api/Services/Interfaces/IChatCompletionProviderFactory.cs
 src/AiRagProxy.Api/Services/Interfaces/IPatService.cs
+src/AiRagProxy.Api/Services/Interfaces/IProviderConnectionService.cs
 src/AiRagProxy.Api/Services/Interfaces/ITokenGeneratorService.cs
 src/AiRagProxy.Api/Services/Interfaces/ITokenValidationService.cs
 src/AiRagProxy.Api/Services/Interfaces/IUserService.cs
-src/AiRagProxy.Api/Services/OpenAiCommunicationService.cs
+src/AiRagProxy.Api/Services/OllamaChatCompletionProvider.cs
+src/AiRagProxy.Api/Services/OpenAiChatCompletionProvider.cs
 src/AiRagProxy.Api/Services/PatService.cs
+src/AiRagProxy.Api/Services/ProviderConnectionService.cs
 src/AiRagProxy.Api/Services/TokenGeneratorService.cs
 src/AiRagProxy.Api/Services/TokenValidationService.cs
 src/AiRagProxy.Api/Services/UserService.cs
@@ -107,12 +112,16 @@ src/AiRagProxy.Domain/Dtos/PersonalAccessToken/CreateTokenRequest.cs
 src/AiRagProxy.Domain/Dtos/PersonalAccessToken/CreateTokenResponse.cs
 src/AiRagProxy.Domain/Dtos/PersonalAccessToken/TokenResponse.cs
 src/AiRagProxy.Domain/Dtos/PersonalAccessToken/ValidatedToken.cs
+src/AiRagProxy.Domain/Dtos/ProviderConnection/CreateProviderConnectionRequest.cs
+src/AiRagProxy.Domain/Enums/ProviderType.cs
+src/AiRagProxy.Domain/Utils/ProviderModelParser.cs
 src/AiRagProxy.Storage/AiRagProxy.Storage.csproj
 src/AiRagProxy.Storage/Configuration/ConfigureServices.cs
 src/AiRagProxy.Storage/Context/AiRagProxyContext.cs
 src/AiRagProxy.Storage/Context/IAiRagProxyContext.cs
 src/AiRagProxy.Storage/Entities/AppUser.cs
 src/AiRagProxy.Storage/Entities/PersonalAccessToken.cs
+src/AiRagProxy.Storage/Entities/ProviderConnection.cs
 src/AiRagProxy.Storage/Migrations/20250717193652_AddAuth.cs
 src/AiRagProxy.Storage/Migrations/20250717193652_AddAuth.Designer.cs
 src/AiRagProxy.Storage/Migrations/20250723104542_AddPAT.cs
@@ -1385,7 +1394,7 @@ public static class ConfigureServicesExtensions
     public static IServiceCollection ConfigureServices(this IServiceCollection services, IConfiguration configuration)
     {
         services.AddScoped<IUserService, UserService>();
-        services.AddHttpClient<IOpenAiCommunicationService, OpenAiCommunicationService>(client =>
+        services.AddHttpClient<IChatCompletionProvider, OpenAiChatCompletionProvider>(client =>
         {
             client.BaseAddress = new Uri(configuration["OpenAi:BaseUrl"] ?? "https://api.openai.com/v1/");
             
@@ -1395,6 +1404,8 @@ public static class ConfigureServicesExtensions
                 client.DefaultRequestHeaders.Add("Authorization", $"Bearer {apiKey}");
             }
         });
+        services.AddScoped<IChatCompletionProvider, OllamaChatCompletionProvider>();
+        services.AddScoped<ChatCompletionProviderFactory>();
         services.AddScoped<ITokenValidationService, TokenValidationService>();
         services.AddScoped<ITokenGeneratorService, TokenGeneratorService>();
         services.AddScoped<IPatService, PatService>();
@@ -1504,23 +1515,31 @@ public abstract class OllamaBaseController : BaseController
 using System.Text.Json;
 using AiRagProxy.Api.Services.Interfaces;
 using AiRagProxy.Domain.Dtos.OpenAi;
+using AiRagProxy.Domain.Utils;
 using Asp.Versioning;
 using Microsoft.AspNetCore.Mvc;
 
 namespace AiRagProxy.Api.Controllers.OpenAi;
 
 [ApiVersion(1)]
-public class ChatController(IOpenAiCommunicationService communicationService) : OpenAiBaseController
+public class ChatController(IChatCompletionProviderFactory chatCompletionProviderFactory,
+    IProviderConnectionService providerConnectionService) : OpenAiBaseController
 {
     [HttpPost("completions")]
     [MapToApiVersion(1)]
     public async Task<IActionResult> Completions([FromBody] OpenAiChatCompletionRequest request, CancellationToken cancellationToken = default)
     {
+        var (providerName, modelName) = ProviderModelParser.ParseProviderAndModel(request.Model);
+        var providerConnection = await providerConnectionService.GetProviderConnectionAsync(providerName);
+        var provider = chatCompletionProviderFactory.GetProvider(providerConnection.Type);
+        // TODO: set url and api key
+        request.Model = modelName;
+
         if (request.Stream)
         {
             Response.ContentType = "text/event-stream";
             
-            await foreach (var chunk in communicationService.CreateChatCompletionStreaming(request, cancellationToken))
+            await foreach (var chunk in provider.CreateChatCompletionStreaming(request, cancellationToken))
             {
                 var json = JsonSerializer.Serialize(chunk);
                 await Response.WriteAsync($"data: {json}\n\n", cancellationToken);
@@ -1528,7 +1547,8 @@ public class ChatController(IOpenAiCommunicationService communicationService) : 
             }
             return new EmptyResult();
         }
-        var response = await communicationService.CreateChatCompletion(request);
+
+        var response = await provider.CreateChatCompletion(request);
         return Ok(response);
     }
 }
@@ -1542,13 +1562,13 @@ using Microsoft.AspNetCore.Mvc;
 namespace AiRagProxy.Api.Controllers.OpenAi;
 
 [ApiVersion(1)]
-public class ModelsController(IOpenAiCommunicationService openAiCommunicationService) : OpenAiBaseController
+public class ModelsController(IChatCompletionProvider chatCompletionProvider) : OpenAiBaseController
 {
     [HttpGet]
     [MapToApiVersion(1)]
     public async Task<IActionResult> GetModels(CancellationToken cancellationToken = default)
     {
-        var models = await openAiCommunicationService.GetModels(cancellationToken);
+        var models = await chatCompletionProvider.GetModels(cancellationToken);
         return Ok(models);
     }
 }
@@ -1854,12 +1874,35 @@ finally
 }
 </file>
 
-<file path="src/AiRagProxy.Api/Services/Interfaces/IOpenAiCommunicationService.cs">
+<file path="src/AiRagProxy.Api/Services/ChatCompletionProviderFactory.cs">
+using AiRagProxy.Api.Services.Interfaces;
+using AiRagProxy.Domain.Enums;
+
+namespace AiRagProxy.Api.Services;
+
+public class ChatCompletionProviderFactory(IServiceProvider serviceProvider, IConfiguration configuration)
+    : IChatCompletionProviderFactory
+{
+    private readonly IConfiguration _configuration = configuration;
+
+    public IChatCompletionProvider GetProvider(ProviderType providerType)
+    {
+        return providerType switch
+        {
+            ProviderType.OpenAi => serviceProvider.GetRequiredService<OpenAiChatCompletionProvider>(),
+            ProviderType.Ollama => serviceProvider.GetRequiredService<OllamaChatCompletionProvider>(),
+            _ => throw new InvalidOperationException("Unknown provider")
+        };
+    }
+}
+</file>
+
+<file path="src/AiRagProxy.Api/Services/Interfaces/IChatCompletionProvider.cs">
 using AiRagProxy.Domain.Dtos.OpenAi;
 
 namespace AiRagProxy.Api.Services.Interfaces;
 
-public interface IOpenAiCommunicationService
+public interface IChatCompletionProvider
 {
     Task<OpenAiChatCompletionResponse> CreateChatCompletion(OpenAiChatCompletionRequest request);
 
@@ -1868,6 +1911,17 @@ public interface IOpenAiCommunicationService
     
     Task<ModelsResponse?> GetModels(CancellationToken cancellationToken = default);
     
+}
+</file>
+
+<file path="src/AiRagProxy.Api/Services/Interfaces/IChatCompletionProviderFactory.cs">
+using AiRagProxy.Domain.Enums;
+
+namespace AiRagProxy.Api.Services.Interfaces;
+
+public interface IChatCompletionProviderFactory
+{
+    IChatCompletionProvider GetProvider(ProviderType providerType);
 }
 </file>
 
@@ -1881,6 +1935,17 @@ public interface IPatService
     Task<CreateTokenResponse> CreateTokenAsync(Guid userId, CreateTokenRequest request);
     Task<List<TokenResponse>> GetTokensAsync(Guid userId);
     Task DeleteTokenAsync(Guid tokenId);
+}
+</file>
+
+<file path="src/AiRagProxy.Api/Services/Interfaces/IProviderConnectionService.cs">
+using AiRagProxy.Storage.Entities;
+
+namespace AiRagProxy.Api.Services.Interfaces;
+
+public interface IProviderConnectionService
+{
+    Task<ProviderConnection> GetProviderConnectionAsync(string providerName);
 }
 </file>
 
@@ -1917,7 +1982,33 @@ public interface IUserService
 }
 </file>
 
-<file path="src/AiRagProxy.Api/Services/OpenAiCommunicationService.cs">
+<file path="src/AiRagProxy.Api/Services/OllamaChatCompletionProvider.cs">
+using AiRagProxy.Api.Services.Interfaces;
+using AiRagProxy.Domain.Dtos.OpenAi;
+
+namespace AiRagProxy.Api.Services;
+
+public class OllamaChatCompletionProvider : IChatCompletionProvider
+{
+    public async Task<OpenAiChatCompletionResponse> CreateChatCompletion(OpenAiChatCompletionRequest request)
+    {
+        throw new NotImplementedException();
+    }
+
+    public IAsyncEnumerable<ChatCompletionChunk> CreateChatCompletionStreaming(OpenAiChatCompletionRequest request,
+        CancellationToken cancellationToken = default)
+    {
+        throw new NotImplementedException();
+    }
+
+    public async Task<ModelsResponse?> GetModels(CancellationToken cancellationToken = default)
+    {
+        throw new NotImplementedException();
+    }
+}
+</file>
+
+<file path="src/AiRagProxy.Api/Services/OpenAiChatCompletionProvider.cs">
 using System.Runtime.CompilerServices;
 using System.Text.Json;
 using AiRagProxy.Api.Services.Interfaces;
@@ -1925,10 +2016,10 @@ using AiRagProxy.Domain.Dtos.OpenAi;
 
 namespace AiRagProxy.Api.Services;
 
-public class OpenAiCommunicationService(
+public class OpenAiChatCompletionProvider(
     HttpClient httpClient,
-    ILogger<OpenAiCommunicationService> logger)
-    : IOpenAiCommunicationService
+    ILogger<OpenAiChatCompletionProvider> logger)
+    : IChatCompletionProvider
 {
     public async Task<OpenAiChatCompletionResponse> CreateChatCompletion(OpenAiChatCompletionRequest request)
     {
@@ -2080,6 +2171,25 @@ public class PatService(IAiRagProxyStorageService storageService,
     public async Task DeleteTokenAsync(Guid tokenId)
     {
         throw new NotImplementedException();
+    }
+}
+</file>
+
+<file path="src/AiRagProxy.Api/Services/ProviderConnectionService.cs">
+using AiRagProxy.Api.Services.Interfaces;
+using AiRagProxy.Storage.Entities;
+using AiRagProxy.Storage.Services.Interfaces;
+
+namespace AiRagProxy.Api.Services;
+
+public class ProviderConnectionService(IAiRagProxyStorageService storageService) : IProviderConnectionService
+{
+    public async Task<ProviderConnection> GetProviderConnectionAsync(string providerName)
+    {
+        // TODO: get user id
+        var providerConnection = await storageService.GetProviderConnection(Guid.Empty, providerName);
+        // TODO: decrypt api key
+        return providerConnection;
     }
 }
 </file>
@@ -2538,6 +2648,43 @@ public class ValidatedToken
 }
 </file>
 
+<file path="src/AiRagProxy.Domain/Dtos/ProviderConnection/CreateProviderConnectionRequest.cs">
+namespace AiRagProxy.Domain.Dtos.ProviderConnection;
+
+public class CreateProviderConnectionRequest
+{
+    
+}
+</file>
+
+<file path="src/AiRagProxy.Domain/Enums/ProviderType.cs">
+namespace AiRagProxy.Domain.Enums;
+
+public enum ProviderType
+{
+    OpenAi,
+    Ollama,
+}
+</file>
+
+<file path="src/AiRagProxy.Domain/Utils/ProviderModelParser.cs">
+namespace AiRagProxy.Domain.Utils;
+
+public static class ProviderModelParser
+{
+    public static (string providerName, string modelName) ParseProviderAndModel(string model)
+    {
+        var idx = model.IndexOf('-');
+        if (idx < 0)
+            throw new ArgumentException("Model name must be prefixed with provider (e.g. openai-gpt-4)");
+
+        var providerName = model[..idx];
+        var modelName = model[(idx + 1)..];
+        return (providerName, modelName);
+    }
+}
+</file>
+
 <file path="src/AiRagProxy.Storage/AiRagProxy.Storage.csproj">
 <Project Sdk="Microsoft.NET.Sdk">
 
@@ -2550,6 +2697,10 @@ public class ValidatedToken
     <ItemGroup>
       <PackageReference Include="Microsoft.EntityFrameworkCore" Version="9.0.7" />
       <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="9.0.4" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\AiRagProxy.Domain\AiRagProxy.Domain.csproj" />
     </ItemGroup>
 
 </Project>
@@ -2587,6 +2738,7 @@ public class AiRagProxyContext(DbContextOptions<AiRagProxyContext> options) : Db
 {
     public DbSet<AppUser> AppUsers { get; set; }
     public DbSet<PersonalAccessToken> PersonalAccessTokens { get; set; }
+    public DbSet<ProviderConnection> ProviderConnections { get; set; }
 
     public override async Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
     {
@@ -2605,6 +2757,7 @@ public interface IAiRagProxyContext
 {
     DbSet<AppUser> AppUsers { get; set; }
     DbSet<PersonalAccessToken> PersonalAccessTokens { get; set; }
+    DbSet<ProviderConnection> ProviderConnections { get; set; }
     
     Task<int> SaveChangesAsync(CancellationToken cancellationToken = default);
 }
@@ -2642,6 +2795,28 @@ public class PersonalAccessToken
     public DateTime? ExpiresAt { get; set; }
     public Guid UserId { get; set; }
     public virtual AppUser? User { get; set; }
+}
+</file>
+
+<file path="src/AiRagProxy.Storage/Entities/ProviderConnection.cs">
+using System.ComponentModel.DataAnnotations;
+using AiRagProxy.Domain.Enums;
+
+namespace AiRagProxy.Storage.Entities;
+
+public class ProviderConnection
+{
+    public Guid Id { get; set; }
+
+    [StringLength(128)] public required string Name { get; set; }
+    public ProviderType Type { get; set; }
+
+    [StringLength(256)] public required string ApiUrl { get; set; }
+    [StringLength(256)] public string? ApiKeyHash { get; set; }
+    public bool Public { get; set; } = false;
+
+    public Guid UserId { get; set; }
+    public AppUser? User { get; set; }
 }
 </file>
 
@@ -3300,6 +3475,20 @@ public class AiRagProxyStorageService(IAiRagProxyContext context) : IAiRagProxyS
                                       && (x.ExpiresAt == null || x.ExpiresAt > DateTime.UtcNow));
     }
 
+    public async Task<List<ProviderConnection>> GetProviderConnections(Guid userId)
+    {
+        return await context.ProviderConnections
+            .Where(x => x.UserId == userId || x.Public)
+            .ToListAsync();
+    }
+
+    public async Task<ProviderConnection?> GetProviderConnection(Guid userId, string name)
+    {
+        return await context.ProviderConnections
+            .Where(x => x.UserId == userId || x.Public)
+            .SingleOrDefaultAsync();
+    }
+
     #endregion Personal Access Tokens
 
     #endregion User Management
@@ -3332,6 +3521,12 @@ public interface IAiRagProxyStorageService
     
     #endregion User Management
 
+    #region Provider Connections
+    
+    Task<List<ProviderConnection>> GetProviderConnections(Guid userId);
+    Task<ProviderConnection?> GetProviderConnection(Guid userId, string name);
+    
+    #endregion Provider Connections
     
 }
 </file>

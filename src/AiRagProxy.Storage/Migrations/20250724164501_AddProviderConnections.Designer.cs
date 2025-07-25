@@ -3,6 +3,7 @@ using System;
 using AiRagProxy.Storage.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
@@ -11,9 +12,11 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace AiRagProxy.Storage.Migrations
 {
     [DbContext(typeof(AiRagProxyContext))]
-    partial class AiRagProxyContextModelSnapshot : ModelSnapshot
+    [Migration("20250724164501_AddProviderConnections")]
+    partial class AddProviderConnections
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

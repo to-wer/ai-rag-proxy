@@ -5,10 +5,10 @@ using AiRagProxy.Domain.Dtos.OpenAi;
 
 namespace AiRagProxy.Api.Services;
 
-public class OpenAiCommunicationService(
+public class OpenAiChatCompletionProvider(
     HttpClient httpClient,
-    ILogger<OpenAiCommunicationService> logger)
-    : IOpenAiCommunicationService
+    ILogger<OpenAiChatCompletionProvider> logger)
+    : IChatCompletionProvider
 {
     public async Task<OpenAiChatCompletionResponse> CreateChatCompletion(OpenAiChatCompletionRequest request)
     {

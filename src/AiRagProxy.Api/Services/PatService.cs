@@ -40,7 +40,7 @@ public class PatService(IAiRagProxyStorageService storageService,
         ).ToList();
     }
 
-    public async Task DeleteTokenAsync(Guid tokenId)
+    public Task DeleteTokenAsync(Guid tokenId)
     {
         throw new NotImplementedException();
     }

@@ -8,7 +8,7 @@ public static class ConfigureServicesExtensions
     public static IServiceCollection ConfigureServices(this IServiceCollection services, IConfiguration configuration)
     {
         services.AddScoped<IUserService, UserService>();
-        services.AddHttpClient<IOpenAiCommunicationService, OpenAiCommunicationService>(client =>
+        services.AddHttpClient<IChatCompletionProvider, OpenAiChatCompletionProvider>(client =>
         {
             client.BaseAddress = new Uri(configuration["OpenAi:BaseUrl"] ?? "https://api.openai.com/v1/");
             
@@ -18,6 +18,9 @@ public static class ConfigureServicesExtensions
                 client.DefaultRequestHeaders.Add("Authorization", $"Bearer {apiKey}");
             }
         });
+        services.AddScoped<IChatCompletionProvider, OllamaChatCompletionProvider>();
+        services.AddScoped<IChatCompletionProviderFactory, ChatCompletionProviderFactory>();
+        services.AddScoped<IProviderConnectionService, ProviderConnectionService>();
         services.AddScoped<ITokenValidationService, TokenValidationService>();
         services.AddScoped<ITokenGeneratorService, TokenGeneratorService>();
         services.AddScoped<IPatService, PatService>();
